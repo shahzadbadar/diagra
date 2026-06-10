@@ -1,0 +1,26 @@
+%%diagra:theme dark
+%%diagra:icons azure
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% API Management fronts the AI application and applies policy.
+  Apps[AI Client Apps]:::generic-browser
+  APIM[API Management]:::azure-apim
+  Orchestrator[Functions Orchestrator]:::azure-functions
+
+  %% Documents and chat history support retrieval augmented generation.
+  Blob[Blob Storage Documents]:::azure-blobstorage
+  Search[Azure AI Search]:::generic-database
+  OpenAI[Azure OpenAI Service]:::generic-api
+  Cosmos[Cosmos DB Chat History]:::azure-cosmosdb
+  Monitor[Azure Monitor]:::azure-monitor
+
+  Apps -->|Chat Request| APIM
+  APIM -->|Authorized Request| Orchestrator
+  Blob -->|Indexed Content| Search
+  Orchestrator -->|Retrieve Context| Search
+  Orchestrator -->|Prompt with Context| OpenAI
+  Orchestrator -->|Store Conversation| Cosmos
+  Orchestrator -.->|Telemetry| Monitor
+  OpenAI -.->|Usage Metrics| Monitor

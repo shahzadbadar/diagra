@@ -1,0 +1,30 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Public traffic enters through CloudFront and reaches API Gateway.
+  Users[Web and Mobile Users]:::generic-browser
+  CloudFront[CloudFront CDN]:::aws-cloudfront
+  Cognito[Cognito Authentication]:::aws-cognito
+  APIGW[REST API Gateway]:::aws-apigateway
+
+  %% Lambda owns business logic and persists data to DynamoDB and S3.
+  Lambda[Order Service Lambda]:::aws-lambda
+  DynamoDB[Orders DynamoDB Table]:::aws-dynamodb
+  S3[Invoice File Storage]:::aws-s3
+
+  %% Observability services receive logs, metrics, and traces.
+  CloudWatch[CloudWatch Metrics and Logs]:::aws-cloudwatch
+  XRay[X-Ray Distributed Tracing]:::generic-server
+
+  Users -->|HTTPS| CloudFront
+  CloudFront -->|API Request| APIGW
+  Cognito -->|JWT Authorizer| APIGW
+  APIGW -->|Invoke| Lambda
+  Lambda -->|Read and Write Orders| DynamoDB
+  Lambda -->|Store Files| S3
+  APIGW -.->|Access Logs| CloudWatch
+  Lambda -.->|Function Logs| CloudWatch
+  Lambda -.->|Trace Segments| XRay

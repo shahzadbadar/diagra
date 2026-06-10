@@ -1,0 +1,25 @@
+%%diagra:theme light
+%%diagra:icons azure
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart TD
+  %% Data Factory orchestrates ingestion into the lake.
+  Sources[Operational Data Sources]:::generic-server
+  DataFactory[Azure Data Factory]:::generic-server
+  DataLake[Data Lake Storage]:::azure-storage
+
+  %% Transformation and analytics layers produce curated datasets.
+  Databricks[Azure Databricks]:::generic-server
+  Synapse[Synapse Analytics]:::generic-database
+  PowerBI[Power BI Reports]:::generic-browser
+  Monitor[Azure Monitor]:::azure-monitor
+
+  Sources -->|Scheduled Ingestion| DataFactory
+  DataFactory -->|Raw Landing Zone| DataLake
+  DataLake -->|Spark Processing| Databricks
+  Databricks -->|Curated Tables| Synapse
+  Synapse -->|Semantic Models| PowerBI
+  DataFactory -.->|Pipeline Metrics| Monitor
+  Databricks -.->|Job Metrics| Monitor
+  Synapse -.->|Query Metrics| Monitor

@@ -1,0 +1,26 @@
+{
+  "name": "diagra",
+  "version": "0.1.0",
+  "description": "CLI for Diagra",
+  "type": "module",
+  "bin": {
+    "diagra": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "cli": "tsx src/index.ts",
+    "test": "vitest run --passWithNoTests",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@diagra/core": "file:../core",
+    "chokidar": "^3.6.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3",
+    "vitest": "^1.6.0"
+  }
+}

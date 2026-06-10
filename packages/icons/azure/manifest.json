@@ -1,0 +1,25 @@
+{
+  "prefix": "azure",
+  "icons": {
+    "functions": "svg/functions.svg",
+    "cosmosdb": "svg/cosmosdb.svg",
+    "blob": "svg/blob.svg",
+    "blobstorage": "svg/blobstorage.svg",
+    "servicebus": "svg/servicebus.svg",
+    "appservice": "svg/appservice.svg",
+    "aks": "svg/aks.svg",
+    "vm": "svg/vm.svg",
+    "sqldb": "svg/sqldb.svg",
+    "storage": "svg/storage.svg",
+    "apim": "svg/apim.svg",
+    "eventgrid": "svg/eventgrid.svg",
+    "eventhubs": "svg/eventhubs.svg",
+    "keyvault": "svg/keyvault.svg",
+    "monitor": "svg/monitor.svg",
+    "entra": "svg/entra.svg",
+    "frontdoor": "svg/frontdoor.svg",
+    "cdn": "svg/cdn.svg",
+    "redis": "svg/redis.svg",
+    "logicapps": "svg/logicapps.svg"
+  }
+}

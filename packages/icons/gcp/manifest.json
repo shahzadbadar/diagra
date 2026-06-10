@@ -1,0 +1,25 @@
+{
+  "prefix": "gcp",
+  "icons": {
+    "bigquery": "svg/bigquery.svg",
+    "cloudrun": "svg/cloudrun.svg",
+    "pubsub": "svg/pubsub.svg",
+    "cloudstorage": "svg/cloudstorage.svg",
+    "functions": "svg/functions.svg",
+    "compute": "svg/compute.svg",
+    "gke": "svg/gke.svg",
+    "sql": "svg/sql.svg",
+    "firestore": "svg/firestore.svg",
+    "spanner": "svg/spanner.svg",
+    "loadbalancing": "svg/loadbalancing.svg",
+    "iam": "svg/iam.svg",
+    "monitoring": "svg/monitoring.svg",
+    "logging": "svg/logging.svg",
+    "scheduler": "svg/scheduler.svg",
+    "tasks": "svg/tasks.svg",
+    "memorystore": "svg/memorystore.svg",
+    "dataflow": "svg/dataflow.svg",
+    "dataproc": "svg/dataproc.svg",
+    "vertexai": "svg/vertexai.svg"
+  }
+}

@@ -1,0 +1,34 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title LLM Gateway
+%%diagra:subtitle Multi-model AI router
+
+flowchart LR
+  %% Client applications call one gateway instead of individual model APIs.
+  Clients[Client Apps]:::generic-browser
+  Gateway[API Gateway]:::generic-api
+  Auth[Auth and Rate Limiter]:::generic-server
+  Router[LLM Router]:::generic-server
+
+  %% The router selects the best model backend.
+  Claude[Claude API]:::generic-api
+  OpenAI[OpenAI API]:::generic-api
+  Ollama[Local Ollama]:::generic-server
+
+  %% Shared gateway services track cost, cache, and logs.
+  Cache[Response Cache]:::generic-database
+  Cost[Cost Tracker]:::generic-server
+  Logging[Request Logging]:::generic-database
+
+  Clients -->|Prompt Request| Gateway
+  Gateway -->|Authenticate| Auth
+  Auth -->|Allowed Request| Router
+  Router -->|Anthropic Route| Claude
+  Router -->|OpenAI Route| OpenAI
+  Router -->|Local Route| Ollama
+  Cache -->|Cached Response| Router
+  Router -->|Store Response| Cache
+  Router -.->|Usage Events| Cost
+  Gateway -.->|Audit Logs| Logging

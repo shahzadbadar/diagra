@@ -1,0 +1,13 @@
+%%diagra:theme light
+%%diagra:icons gcp
+%%diagra:accent #4285F4
+
+flowchart LR
+  storage[Cloud Storage]:::gcp-cloudstorage
+  dataflow[Dataflow]:::gcp-dataflow
+  bigquery[BigQuery]:::gcp-bigquery
+  pubsub[Pub/Sub]:::gcp-pubsub
+
+  storage --> dataflow
+  pubsub --> dataflow
+  dataflow --> bigquery

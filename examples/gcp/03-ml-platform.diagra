@@ -1,0 +1,26 @@
+%%diagra:theme dark
+%%diagra:icons gcp
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Training data and model artifacts are managed by GCP data services.
+  DataScientists[ML Engineers]:::generic-user
+  Storage[Cloud Storage Artifacts]:::gcp-cloudstorage
+  BigQueryML[BigQuery ML Features]:::gcp-bigquery
+  VertexTrain[Vertex AI Training]:::gcp-vertexai
+
+  %% Prediction traffic flows through Cloud Run and Pub/Sub.
+  VertexEndpoint[Vertex AI Endpoint]:::gcp-vertexai
+  CloudRun[Cloud Run Serving Layer]:::gcp-cloudrun
+  PubSub[Prediction Pub/Sub]:::gcp-pubsub
+  Monitoring[Cloud Monitoring]:::gcp-monitoring
+
+  DataScientists -->|Prepare Data| BigQueryML
+  BigQueryML -->|Training Features| VertexTrain
+  Storage -->|Model Artifacts| VertexTrain
+  VertexTrain -->|Deploy Model| VertexEndpoint
+  CloudRun -->|Online Prediction| VertexEndpoint
+  PubSub -->|Async Prediction| CloudRun
+  VertexEndpoint -.->|Prediction Metrics| Monitoring
+  CloudRun -.->|Serving Metrics| Monitoring

@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Cloud Tasks">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <rect x="8" y="8" width="16" height="4.5" rx="2" fill="#77a7f7"/><rect x="8" y="14" width="16" height="4.5" rx="2" fill="#77a7f7"/><rect x="8" y="20" width="16" height="4.5" rx="2" fill="#77a7f7"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">TSK</text>
+</svg>

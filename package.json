@@ -1,0 +1,38 @@
+{
+  "name": "diagra-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Diagra monorepo",
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/cli"
+  ],
+  "bin": {
+    "diagra": "./packages/cli/dist/index.js"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "diagra": "npm --workspace diagra run cli",
+    "postinstall": "npm run build --workspace @diagra/core && npm run build --workspace diagra",
+    "setup:icons": "ts-node scripts/setup-icons.ts"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.8",
+    "@types/node": "^20.14.10",
+    "adm-zip": "^0.5.17",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3",
+    "vitest": "^1.6.0"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "moduleResolution": "Node"
+    }
+  },
+  "packageManager": "pnpm@9.4.0"
+}

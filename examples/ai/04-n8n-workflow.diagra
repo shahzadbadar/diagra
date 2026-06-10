@@ -1,0 +1,34 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title n8n Automation Workflow
+%%diagra:subtitle AI-powered content pipeline
+
+flowchart LR
+  %% A webhook starts the automation and fetches source content.
+  Webhook[Trigger Webhook]:::generic-api
+  HTTP[HTTP Request Node]:::generic-api
+  Condition[IF Condition Node]:::generic-server
+  Claude[Claude AI Node]:::generic-api
+
+  %% The successful path transforms content and notifies teams.
+  Transform[Transform Data Node]:::generic-server
+  Email[Send Email Node]:::generic-api
+  Sheets[Save to Google Sheets]:::generic-server
+  Slack[Slack Notification]:::generic-api
+
+  %% Errors flow through retry and handler nodes.
+  Retry[Retry Logic Loop]:::generic-server
+  ErrorHandler[Error Handler]:::generic-server
+
+  Webhook -->|Trigger Payload| HTTP
+  HTTP -->|Fetched Data| Condition
+  Condition -->|Needs AI| Claude
+  Claude -->|Structured Content| Transform
+  Transform -->|Send Summary| Email
+  Transform -->|Append Row| Sheets
+  Transform -->|Notify Channel| Slack
+  Condition -->|Failed Check| ErrorHandler
+  ErrorHandler -->|Retry| Retry
+  Retry -->|Try Again| HTTP

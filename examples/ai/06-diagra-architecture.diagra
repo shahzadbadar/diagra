@@ -1,0 +1,46 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title How Diagra Works
+%%diagra:subtitle The rendering pipeline
+
+flowchart LR
+  %% The user writes a .diagra file with Mermaid-compatible syntax and Diagra directives.
+  User[User Writes .diagra File]:::generic-user
+  CLI[CLI Parses Directives]:::generic-server
+  Mermaid[Mermaid Parser]:::generic-api
+  AST[Diagram AST Output]:::generic-server
+
+  %% Rendering enriches the AST with icons and theme tokens.
+  Icons[Icon Resolver]:::generic-server
+  Theme[Theme Engine]:::generic-server
+  Renderer[SVG Renderer]:::generic-server
+
+  %% Exporters write multiple output formats from the rendered graph.
+  Exporters[Exporters]:::generic-server
+  SVG[SVG Output]:::generic-server
+  PNG[PNG Output]:::generic-server
+  HTML[HTML Output]:::generic-server
+  Drawio[Draw.io Output]:::generic-server
+  MMD[Mermaid MMD Output]:::generic-server
+  Files[Output Files]:::generic-server
+
+  User -->|Render Command| CLI
+  CLI -->|Clean Mermaid Source| Mermaid
+  Mermaid -->|Parsed Graph| AST
+  AST -->|Resolve Classes| Icons
+  AST -->|Apply Directives| Theme
+  Icons -->|Embedded SVG Icons| Renderer
+  Theme -->|CSS Variables| Renderer
+  Renderer -->|Rendered SVG| Exporters
+  Exporters -->|Write| SVG
+  Exporters -->|Rasterize| PNG
+  Exporters -->|Wrap Document| HTML
+  Exporters -->|Convert Graph| Drawio
+  Exporters -->|Fallback Source| MMD
+  SVG -->|Saved Artifact| Files
+  PNG -->|Saved Artifact| Files
+  HTML -->|Saved Artifact| Files
+  Drawio -->|Saved Artifact| Files
+  MMD -->|Saved Artifact| Files

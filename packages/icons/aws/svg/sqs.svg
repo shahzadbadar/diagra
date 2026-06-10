@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Amazon SQS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="4.5" rx="2" fill="#ffb647"/><rect x="8" y="14" width="16" height="4.5" rx="2" fill="#ffb647"/><rect x="8" y="20" width="16" height="4.5" rx="2" fill="#ffb647"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">SQS</text>
+</svg>

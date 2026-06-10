@@ -1,0 +1,33 @@
+%%diagra:theme light
+%%diagra:icons azure
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% API Management provides a single edge for internal microservices.
+  Clients[Client Applications]:::generic-browser
+  APIM[API Management]:::azure-apim
+  OrdersFn[Orders Function]:::azure-functions
+  PaymentsFn[Payments Function]:::azure-functions
+  InventoryFn[Inventory Function]:::azure-functions
+
+  %% Services communicate through Service Bus and own their data stores.
+  ServiceBus[Service Bus Topic]:::azure-servicebus
+  OrdersDB[Orders Cosmos DB]:::azure-cosmosdb
+  PaymentsDB[Payments Cosmos DB]:::azure-cosmosdb
+  KeyVault[Key Vault Secrets]:::azure-keyvault
+  Monitor[Azure Monitor]:::azure-monitor
+
+  Clients -->|HTTPS| APIM
+  APIM -->|Orders API| OrdersFn
+  APIM -->|Payments API| PaymentsFn
+  APIM -->|Inventory API| InventoryFn
+  OrdersFn -->|Persist Orders| OrdersDB
+  PaymentsFn -->|Persist Payments| PaymentsDB
+  OrdersFn -->|Publish Events| ServiceBus
+  PaymentsFn -->|Publish Events| ServiceBus
+  KeyVault -->|Runtime Secrets| OrdersFn
+  KeyVault -->|Runtime Secrets| PaymentsFn
+  ServiceBus -.->|Queue Metrics| Monitor
+  OrdersFn -.->|Function Metrics| Monitor
+  PaymentsFn -.->|Function Metrics| Monitor

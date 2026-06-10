@@ -1,0 +1,14 @@
+%%diagra:theme neutral
+%%diagra:icons generic
+
+flowchart LR
+  mobile[Mobile]:::generic-mobile
+  browser[Browser]:::generic-browser
+  api[API]:::generic-api
+  queue[Queue]:::generic-queue
+  db[Database]:::generic-database
+
+  mobile --> api
+  browser --> api
+  api --> queue
+  queue --> db

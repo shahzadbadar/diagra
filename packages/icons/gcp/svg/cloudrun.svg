@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Cloud Run">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <path d="M8 10h16v12H8z" fill="#77a7f7" opacity="0.95"/><path d="M11 13h3M16 13h3M21 13h2M11 17h3M16 17h3M21 17h2" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">RUN</text>
+</svg>

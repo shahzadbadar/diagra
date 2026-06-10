@@ -1,0 +1,29 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% A classic scalable web system design.
+  Users[Users]:::generic-user
+  CDN[CDN]:::generic-cloud
+  LoadBalancer[Load Balancer]:::generic-api
+  WebA[Web Server A]:::generic-server
+  WebB[Web Server B]:::generic-server
+  Cache[Redis Cache Layer]:::generic-database
+  App[Application Servers]:::generic-server
+  PrimaryDB[Primary Database]:::generic-database
+  Replicas[Read Replicas]:::generic-database
+  ObjectStorage[Object Storage]:::generic-cloud
+
+  Users -->|Static Assets| CDN
+  Users -->|Dynamic Request| LoadBalancer
+  LoadBalancer -->|Route| WebA
+  LoadBalancer -->|Route| WebB
+  WebA -->|Application Call| App
+  WebB -->|Application Call| App
+  App -->|Cache Read| Cache
+  App -->|Write Data| PrimaryDB
+  PrimaryDB -->|Replicate| Replicas
+  App -->|Store Media| ObjectStorage
+  Replicas -->|Read Queries| App

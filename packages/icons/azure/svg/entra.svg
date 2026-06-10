@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Microsoft Entra ID">
+  <rect x="4" y="4" width="24" height="24" rx="5" fill="#0078D4"/>
+  <path d="M16 7.2 23 10v5.2c0 4.2-2.6 7.6-7 9.6-4.4-2-7-5.4-7-9.6V10l7-2.8Z" fill="#479ee0" opacity="0.95"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">ID</text>
+</svg>

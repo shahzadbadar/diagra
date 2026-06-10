@@ -1,0 +1,286 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2708" height="1120" viewBox="0 0 2708 1120" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 172 380 L 352 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="209" y="360" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="372" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Render Command</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 484 380 L 664 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="500" y="392" width="148" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="404" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Clean Mermaid Source</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 796 380 L 976 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="840" y="424" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="436" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Parsed Graph</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 1108 380 C 1189 380, 1207 306, 1288 306" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1141.5" y="323" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1198" y="335" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Resolve Classes</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 1108 380 C 1189 380, 1207 454, 1288 454" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1138" y="445" width="120" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1198" y="457" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Apply Directives</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 1420 306 C 1501 306, 1519 380, 1600 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1443" y="467" width="134" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1510" y="479" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Embedded SVG Icons</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 1420 454 C 1501 454, 1519 380, 1600 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1460.5" y="493" width="99" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1510" y="505" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">CSS Variables</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 1732 380 L 1912 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1776" y="520" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1822" y="532" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Rendered SVG</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-9" class="diagra-edge" d="M 2044 380 C 2125 380, 2143 84, 2224 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2112" y="212" width="44" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2134" y="224" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Write</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-10" class="diagra-edge" d="M 2044 380 C 2125 380, 2143 232, 2224 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2098.5" y="286" width="71" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2134" y="298" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Rasterize</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-11" class="diagra-edge" d="M 2044 380 L 2224 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2084.5" y="552" width="99" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2134" y="564" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Wrap Document</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-12" class="diagra-edge" d="M 2044 380 C 2125 380, 2143 528, 2224 528" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2084.5" y="578" width="99" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2134" y="590" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Convert Graph</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-13" class="diagra-edge" d="M 2044 380 C 2125 380, 2143 676, 2224 676" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2077.5" y="604" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2134" y="616" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Fallback Source</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-14" class="diagra-edge" d="M 2356 84 C 2437 84, 2455 380, 2536 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2393" y="244" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2446" y="256" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Saved Artifact</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-15" class="diagra-edge" d="M 2356 232 C 2437 232, 2455 380, 2536 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2393" y="638" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2446" y="650" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Saved Artifact</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-16" class="diagra-edge" d="M 2356 380 L 2536 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2393" y="664" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2446" y="676" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Saved Artifact</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-17" class="diagra-edge" d="M 2356 528 C 2437 528, 2455 380, 2536 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2393" y="690" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2446" y="702" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Saved Artifact</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-18" class="diagra-edge" d="M 2356 676 C 2437 676, 2455 380, 2536 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2393" y="716" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="2446" y="728" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Saved Artifact</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.8s" repeatCount="indefinite">
+    <mpath href="#edge-5"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1s" repeatCount="indefinite">
+    <mpath href="#edge-6"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.2000000000000002s" repeatCount="indefinite">
+    <mpath href="#edge-7"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.4000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-8"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.6s" repeatCount="indefinite">
+    <mpath href="#edge-9"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.8s" repeatCount="indefinite">
+    <mpath href="#edge-10"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2s" repeatCount="indefinite">
+    <mpath href="#edge-11"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.2s" repeatCount="indefinite">
+    <mpath href="#edge-12"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.4000000000000004s" repeatCount="indefinite">
+    <mpath href="#edge-13"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.6s" repeatCount="indefinite">
+    <mpath href="#edge-14"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.8000000000000003s" repeatCount="indefinite">
+    <mpath href="#edge-15"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="3s" repeatCount="indefinite">
+    <mpath href="#edge-16"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="3.2s" repeatCount="indefinite">
+    <mpath href="#edge-17"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="3.4000000000000004s" repeatCount="indefinite">
+    <mpath href="#edge-18"/>
+  </animateMotion>
+</circle>
+<g id="node-User" class="diagra-node" data-icon="generic-user">
+  <rect x="40" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="106" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">User Writes .diagra File</text>
+</g>
+<g id="node-CLI" class="diagra-node" data-icon="generic-server">
+  <rect x="352" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="418" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">CLI Parses Directives</text>
+</g>
+<g id="node-Mermaid" class="diagra-node" data-icon="generic-api">
+  <rect x="664" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="730" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Mermaid Parser</text>
+</g>
+<g id="node-AST" class="diagra-node" data-icon="generic-server">
+  <rect x="976" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1042" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Diagram AST Output</text>
+</g>
+<g id="node-Icons" class="diagra-node" data-icon="generic-server">
+  <rect x="1288" y="262" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1338" y="274" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1354" y="330" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Icon Resolver</text>
+</g>
+<g id="node-Theme" class="diagra-node" data-icon="generic-server">
+  <rect x="1288" y="410" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1338" y="422" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1354" y="478" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Theme Engine</text>
+</g>
+<g id="node-Renderer" class="diagra-node" data-icon="generic-server">
+  <rect x="1600" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1650" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1666" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">SVG Renderer</text>
+</g>
+<g id="node-Exporters" class="diagra-node" data-icon="generic-server">
+  <rect x="1912" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1962" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1978" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Exporters</text>
+</g>
+<g id="node-SVG" class="diagra-node" data-icon="generic-server">
+  <rect x="2224" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2274" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2290" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">SVG Output</text>
+</g>
+<g id="node-PNG" class="diagra-node" data-icon="generic-server">
+  <rect x="2224" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2274" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2290" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">PNG Output</text>
+</g>
+<g id="node-HTML" class="diagra-node" data-icon="generic-server">
+  <rect x="2224" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2274" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2290" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">HTML Output</text>
+</g>
+<g id="node-Drawio" class="diagra-node" data-icon="generic-server">
+  <rect x="2224" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2274" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2290" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Draw.io Output</text>
+</g>
+<g id="node-MMD" class="diagra-node" data-icon="generic-server">
+  <rect x="2224" y="632" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2274" y="644" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2290" y="700" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Mermaid MMD Output</text>
+</g>
+<g id="node-Files" class="diagra-node" data-icon="generic-server">
+  <rect x="2536" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2586" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2602" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Output Files</text>
+</g>
+</svg>

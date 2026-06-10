@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 172 380 L 352 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="240" y="360" width="44" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="372" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Goal</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 484 380 C 565 380, 583 232, 664 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="524.5" y="286" width="99" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="298" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Research Task</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 484 380 L 664 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="535" y="392" width="78" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="404" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Build Task</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 796 232 C 877 232, 895 84, 976 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="847" y="138" width="78" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="150" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Use Search</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 796 380 C 877 380, 895 232, 976 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="854" y="318" width="64" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="330" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Run Code</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 796 380 L 976 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="812" y="424" width="148" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="436" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Read and Write Files</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 796 232 C 877 232, 895 528, 976 528" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="833" y="456" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="468" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Store Findings</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 796 380 C 877 380, 895 528, 976 528" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="829.5" y="482" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="494" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Store Artifacts</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-9" class="diagra-edge" d="M 484 380 C 565 380, 583 528, 664 528" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="528" y="514" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="526" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Review Draft</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-10" class="diagra-edge" d="M 796 528 C 877 528, 895 676, 976 676" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="829.5" y="582" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="594" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Approved Answer</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.8s" repeatCount="indefinite">
+    <mpath href="#edge-5"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1s" repeatCount="indefinite">
+    <mpath href="#edge-6"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.2000000000000002s" repeatCount="indefinite">
+    <mpath href="#edge-7"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.4000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-8"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.6s" repeatCount="indefinite">
+    <mpath href="#edge-9"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.8s" repeatCount="indefinite">
+    <mpath href="#edge-10"/>
+  </animateMotion>
+</circle>
+<g id="node-User" class="diagra-node" data-icon="generic-user">
+  <rect x="40" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="106" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">User Request</text>
+</g>
+<g id="node-Orchestrator" class="diagra-node" data-icon="generic-api">
+  <rect x="352" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="418" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Orchestrator Agent</text>
+</g>
+<g id="node-Research" class="diagra-node" data-icon="generic-server">
+  <rect x="664" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="730" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Research Agent</text>
+</g>
+<g id="node-Code" class="diagra-node" data-icon="generic-server">
+  <rect x="664" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="730" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Code Agent</text>
+</g>
+<g id="node-Review" class="diagra-node" data-icon="generic-server">
+  <rect x="664" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="730" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Review Agent</text>
+</g>
+<g id="node-WebSearch" class="diagra-node" data-icon="generic-cloud">
+  <rect x="976" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="cloud"><path d="M10 25h14a6 6 0 0 0 0-12 9 9 0 0 0-17-1 6.5 6.5 0 0 0 3 13Z" fill="#64748B"/></svg>
+
+  <text x="1042" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Tool Web Search</text>
+</g>
+<g id="node-Executor" class="diagra-node" data-icon="generic-server">
+  <rect x="976" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1042" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Tool Code Executor</text>
+</g>
+<g id="node-FileSystem" class="diagra-node" data-icon="generic-server">
+  <rect x="976" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1042" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Tool File System</text>
+</g>
+<g id="node-Memory" class="diagra-node" data-icon="generic-database">
+  <rect x="976" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="1042" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Memory Store</text>
+</g>
+<g id="node-Final" class="diagra-node" data-icon="generic-user">
+  <rect x="976" y="632" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="644" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="1042" y="700" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Final Response</text>
+</g>
+</svg>

@@ -1,0 +1,40 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart TD
+  %% Route53 latency routing sends users to the nearest active region.
+  Users[Global Users]:::generic-browser
+  Route53[Route53 Latency Routing]:::aws-route53
+
+  %% Region A stack.
+  RegionA[us-east-1 Active Region]:::aws-vpc
+  CloudFrontA[CloudFront Region A]:::aws-cloudfront
+  APIGWA[API Gateway Region A]:::aws-apigateway
+  LambdaA[Lambda Region A]:::aws-lambda
+  DynamoA[DynamoDB Region A]:::aws-dynamodb
+
+  %% Region B stack.
+  RegionB[eu-west-1 Active Region]:::aws-vpc
+  CloudFrontB[CloudFront Region B]:::aws-cloudfront
+  APIGWB[API Gateway Region B]:::aws-apigateway
+  LambdaB[Lambda Region B]:::aws-lambda
+  DynamoB[DynamoDB Region B]:::aws-dynamodb
+
+  %% Global tables replicate data between active regions.
+  GlobalTables[DynamoDB Global Tables]:::aws-dynamodb
+
+  Users -->|DNS Query| Route53
+  Route53 -->|Nearest Region| CloudFrontA
+  Route53 -->|Nearest Region| CloudFrontB
+  RegionA -->|Contains| CloudFrontA
+  CloudFrontA -->|Request| APIGWA
+  APIGWA -->|Invoke| LambdaA
+  LambdaA -->|Read and Write| DynamoA
+  RegionB -->|Contains| CloudFrontB
+  CloudFrontB -->|Request| APIGWB
+  APIGWB -->|Invoke| LambdaB
+  LambdaB -->|Read and Write| DynamoB
+  DynamoA -->|Replicate| GlobalTables
+  GlobalTables -->|Replicate| DynamoB

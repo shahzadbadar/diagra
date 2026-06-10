@@ -1,0 +1,16 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  user[User]:::generic-user
+  apigw[API Gateway]:::aws-apigateway
+  lambda[Lambda]:::aws-lambda
+  dynamo[DynamoDB]:::aws-dynamodb
+  s3[S3]:::aws-s3
+
+  user --> apigw
+  apigw --> lambda
+  lambda --> dynamo
+  lambda --> s3

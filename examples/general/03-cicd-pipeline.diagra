@@ -1,0 +1,33 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart TD
+  %% Developer changes start the CI/CD pipeline.
+  Developer[Developer Pushes Code]:::generic-user
+  GitHub[GitHub Repository]:::generic-server
+  Runner[CI Runner]:::generic-server
+  Build[Build Stage]:::generic-server
+  Tests[Test Stage]:::generic-server
+  Security[Security Scan]:::generic-server
+
+  %% Release steps produce and deploy container artifacts.
+  Docker[Docker Build]:::generic-server
+  Registry[Container Registry]:::generic-server
+  Staging[Deploy to Staging]:::generic-server
+  Integration[Integration Tests]:::generic-server
+  Production[Deploy to Production]:::generic-server
+  Monitoring[Production Monitoring]:::generic-server
+
+  Developer -->|Git Push| GitHub
+  GitHub -->|Webhook| Runner
+  Runner -->|Compile| Build
+  Build -->|Run Unit Tests| Tests
+  Tests -->|Scan Artifact| Security
+  Security -->|Build Image| Docker
+  Docker -->|Push Image| Registry
+  Registry -->|Deploy Candidate| Staging
+  Staging -->|Validate| Integration
+  Integration -->|Promote| Production
+  Production -->|Metrics| Monitoring

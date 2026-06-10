@@ -1,0 +1,23 @@
+%%diagra:theme light
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Flowchart fallback for OAuth and JWT authentication.
+  User[User Login]:::generic-user
+  Frontend[Frontend Browser]:::generic-browser
+  Gateway[API Gateway]:::generic-api
+  Auth[Auth Service]:::generic-server
+  TokenStore[Token Store]:::generic-database
+  UserDB[User Database]:::generic-database
+  Resource[Protected Resource]:::generic-server
+
+  User -->|Enter Credentials| Frontend
+  Frontend -->|Login Request| Gateway
+  Gateway -->|Validate Credentials| Auth
+  Auth -->|Lookup User| UserDB
+  Auth -->|Issue JWT| TokenStore
+  TokenStore -->|Return Token| Frontend
+  Frontend -->|Bearer Token| Gateway
+  Gateway -->|Authorized Request| Resource

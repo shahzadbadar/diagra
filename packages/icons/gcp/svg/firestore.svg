@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Firestore">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#77a7f7"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#77a7f7"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">FS</text>
+</svg>

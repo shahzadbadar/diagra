@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1120" viewBox="0 0 980 1120" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F8F9FA;
+  --node-border: #E2E8F0;
+  --node-text: #1A202C;
+  --edge-color: #94A3B8;
+  --edge-label: #64748B;
+  --accent: #6366F1;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 106 128 C 246.4 128, 277.6 410, 418 410" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="198.5" y="249" width="127" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="261" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Enter Credentials</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 352 454 C 433 454, 91 232, 172 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="212.5" y="323" width="99" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="335" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Login Request</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 106 276 C 154 276, 58 336, 106 336" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="32" y="286" width="148" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="298" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Validate Credentials</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 106 424 C 154 424, 58 632, 106 632" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="63.5" y="572" width="85" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="584" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Lookup User</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 106 424 C 154 424, 58 484, 106 484" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="70.5" y="434" width="71" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="446" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Issue JWT</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 172 528 C 253 528, 271 454, 352 454" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="216" y="471" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="483" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Return Token</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 352 454 C 433 454, 91 232, 172 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="216" y="355" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="367" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Bearer Token</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 106 276 C 154 276, 58 780, 106 780" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="39" y="604" width="134" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="616" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Authorized Request</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.8s" repeatCount="indefinite">
+    <mpath href="#edge-5"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1s" repeatCount="indefinite">
+    <mpath href="#edge-6"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.2000000000000002s" repeatCount="indefinite">
+    <mpath href="#edge-7"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.4000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-8"/>
+  </animateMotion>
+</circle>
+<g id="node-User" class="diagra-node" data-icon="generic-user">
+  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">User Login</text>
+</g>
+<g id="node-Frontend" class="diagra-node" data-icon="generic-browser">
+  <rect x="352" y="410" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="422" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="418" y="478" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Frontend Browser</text>
+</g>
+<g id="node-Gateway" class="diagra-node" data-icon="generic-api">
+  <rect x="40" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="106" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API Gateway</text>
+</g>
+<g id="node-Auth" class="diagra-node" data-icon="generic-server">
+  <rect x="40" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="106" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Auth Service</text>
+</g>
+<g id="node-TokenStore" class="diagra-node" data-icon="generic-database">
+  <rect x="40" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="106" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Token Store</text>
+</g>
+<g id="node-UserDB" class="diagra-node" data-icon="generic-database">
+  <rect x="40" y="632" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="644" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="106" y="700" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">User Database</text>
+</g>
+<g id="node-Resource" class="diagra-node" data-icon="generic-server">
+  <rect x="40" y="780" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="792" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="106" y="848" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Protected Resource</text>
+</g>
+</svg>

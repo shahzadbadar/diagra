@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="960" viewBox="0 0 1460 960" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 172 84 C 253 84, 271 380, 352 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="240" y="212" width="44" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="224" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">HTTPS</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 484 380 L 664 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="514" y="360" width="120" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="372" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Allowed Requests</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 796 380 L 976 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="833" y="392" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="404" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Origin Request</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 172 232 C 533.8 232, 614.2 380, 976 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="521" y="286" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="298" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">JWT Validation</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 1108 380 L 1288 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1173" y="424" width="50" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1198" y="436" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Invoke</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 172 380 L 1288 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="649" y="456" width="162" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="730" y="468" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Least Privilege Access</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 172 528 C 674.2 528, 785.8 380, 1288 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="684" y="482" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="730" y="494" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Encrypt Data</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 172 676 C 674.2 676, 785.8 380, 1288 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="673.5" y="508" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="730" y="520" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Runtime Secrets</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-9" class="diagra-edge" d="M 484 380 C 658.6 380, 697.4 860, 872 860" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="618" y="600" width="120" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="678" y="612" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Blocked Requests</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-10" class="diagra-edge" d="M 1042 424 C 1090 424, 890 816, 938 816" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="951" y="632" width="78" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="990" y="644" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Audit Logs</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-11" class="diagra-edge" d="M 1354 424 C 1541.2 424, 750.8 816, 938 816" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="1089.5" y="664" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1146" y="676" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Security Events</text>
+</g>
+
+<g id="node-Internet" class="diagra-node" data-icon="generic-browser">
+  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Internet Clients</text>
+</g>
+<g id="node-WAF" class="diagra-node" data-icon="aws-waf">
+  <rect x="352" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS WAF">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 7 23 10v5.6c0 4-2.7 7-7 9.4-4.3-2.4-7-5.4-7-9.4V10l7-3Z" fill="#ffb647" opacity="0.95"/><path d="M13 16.5 15.2 19 20 13.5" stroke="#FFFFFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">WAF</text>
+</svg>
+  <text x="418" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">AWS WAF Rules</text>
+</g>
+<g id="node-CloudFront" class="diagra-node" data-icon="aws-cloudfront">
+  <rect x="664" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon CloudFront">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <circle cx="16" cy="16" r="8.5" fill="#ffb647" opacity="0.9"/><path d="M8 16h16M16 8c2 2.4 3 5 3 8s-1 5.6-3 8M16 8c-2 2.4-3 5-3 8s1 5.6 3 8" stroke="#FFFFFF" stroke-width="1.1" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CF</text>
+</svg>
+  <text x="730" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">CloudFront Distribution</text>
+</g>
+<g id="node-APIGW" class="diagra-node" data-icon="aws-apigateway">
+  <rect x="976" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon API Gateway">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M7.5 11h17v10h-17z" fill="#ffb647" opacity="0.9"/><path d="M11 16h10" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">API</text>
+</svg>
+  <text x="1042" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Secure API Gateway</text>
+</g>
+<g id="node-Cognito" class="diagra-node" data-icon="aws-cognito">
+  <rect x="40" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon Cognito">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 7.2 23 10v5.2c0 4.2-2.6 7.6-7 9.6-4.4-2-7-5.4-7-9.6V10l7-2.8Z" fill="#ffb647" opacity="0.95"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">ID</text>
+</svg>
+  <text x="106" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Cognito User Pool</text>
+</g>
+<g id="node-Lambda" class="diagra-node" data-icon="aws-lambda">
+  <rect x="1288" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1338" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS Lambda">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="16" rx="3" fill="#ffb647" opacity="0.95"/><path d="M11 6v4M16 6v4M21 6v4M11 22v4M16 22v4M21 22v4" stroke="#FFFFFF" stroke-width="1.1"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">λ</text>
+</svg>
+  <text x="1354" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Protected Lambda APIs</text>
+</g>
+<g id="node-IAM" class="diagra-node" data-icon="aws-iam">
+  <rect x="40" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS IAM">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 7 23 10v5.6c0 4-2.7 7-7 9.4-4.3-2.4-7-5.4-7-9.4V10l7-3Z" fill="#ffb647" opacity="0.95"/><path d="M13 16.5 15.2 19 20 13.5" stroke="#FFFFFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">IAM</text>
+</svg>
+  <text x="106" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">IAM Execution Roles</text>
+</g>
+<g id="node-KMS" class="diagra-node" data-icon="aws-kms">
+  <rect x="40" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS KMS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 7 23 10v5.6c0 4-2.7 7-7 9.4-4.3-2.4-7-5.4-7-9.4V10l7-3Z" fill="#ffb647" opacity="0.95"/><path d="M13 16.5 15.2 19 20 13.5" stroke="#FFFFFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">KMS</text>
+</svg>
+  <text x="106" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">KMS Encryption Keys</text>
+</g>
+<g id="node-Secrets" class="diagra-node" data-icon="aws-secretsmanager">
+  <rect x="40" y="632" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="644" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS Secrets Manager">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 7 23 10v5.6c0 4-2.7 7-7 9.4-4.3-2.4-7-5.4-7-9.4V10l7-3Z" fill="#ffb647" opacity="0.95"/><path d="M13 16.5 15.2 19 20 13.5" stroke="#FFFFFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">SM</text>
+</svg>
+  <text x="106" y="700" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Secrets Manager</text>
+</g>
+<g id="node-CloudWatch" class="diagra-node" data-icon="aws-cloudwatch">
+  <rect x="872" y="816" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="922" y="828" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon CloudWatch">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#ffb647" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CW</text>
+</svg>
+  <text x="938" y="884" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Security Alerts</text>
+</g>
+</svg>

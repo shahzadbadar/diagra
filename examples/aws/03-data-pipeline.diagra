@@ -1,0 +1,34 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart TD
+  %% Batch and streaming data land in S3 and Kinesis.
+  Producers[Application Producers]:::generic-server
+  Kinesis[Kinesis Data Stream]:::aws-kinesis
+  RawS3[S3 Raw Data Lake]:::aws-s3
+
+  %% Glue prepares curated datasets for analytics.
+  Glue[Glue ETL Jobs]:::aws-glue
+  CuratedS3[S3 Curated Zone]:::aws-s3
+  Athena[Athena Query Layer]:::aws-athena
+  Redshift[Redshift Warehouse]:::aws-redshift
+
+  %% Analytics consumers use warehouse, query, and ML outputs.
+  SageMaker[SageMaker ML Training]:::aws-sagemaker
+  QuickSight[QuickSight Dashboards]:::generic-browser
+  CloudWatch[Pipeline Monitoring]:::aws-cloudwatch
+
+  Producers -->|Streaming Events| Kinesis
+  Producers -->|Batch Files| RawS3
+  Kinesis -->|Delivery Stream| RawS3
+  RawS3 -->|Crawl and Transform| Glue
+  Glue -->|Curated Parquet| CuratedS3
+  CuratedS3 -->|Ad Hoc SQL| Athena
+  CuratedS3 -->|Load Warehouse| Redshift
+  Redshift -->|Training Features| SageMaker
+  Athena -->|BI Queries| QuickSight
+  Redshift -->|BI Models| QuickSight
+  Glue -.->|Job Metrics| CloudWatch
+  Kinesis -.->|Stream Metrics| CloudWatch

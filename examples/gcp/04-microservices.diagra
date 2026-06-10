@@ -1,0 +1,33 @@
+%%diagra:theme dark
+%%diagra:icons gcp
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Load Balancing sends external traffic into the GKE platform.
+  Users[Application Users]:::generic-browser
+  LoadBalancer[Cloud Load Balancing]:::gcp-loadbalancing
+  GKE[GKE Cluster]:::gcp-gke
+
+  %% Workload nodes represent services running inside the cluster.
+  Orders[Orders Service]:::gcp-cloudrun
+  Payments[Payments Service]:::gcp-cloudrun
+  Inventory[Inventory Service]:::gcp-cloudrun
+  OrdersDB[Orders Firestore]:::gcp-firestore
+  PaymentsDB[Payments Firestore]:::gcp-firestore
+  PubSub[Pub/Sub Messaging]:::gcp-pubsub
+  Monitoring[Cloud Monitoring]:::gcp-monitoring
+  Trace[Cloud Trace]:::gcp-logging
+
+  Users -->|HTTPS| LoadBalancer
+  LoadBalancer -->|Ingress| GKE
+  GKE -->|Route Orders| Orders
+  GKE -->|Route Payments| Payments
+  GKE -->|Route Inventory| Inventory
+  Orders -->|Owns Data| OrdersDB
+  Payments -->|Owns Data| PaymentsDB
+  Orders -->|Publish Events| PubSub
+  Payments -->|Consume Events| PubSub
+  GKE -.->|Cluster Metrics| Monitoring
+  Orders -.->|Trace Spans| Trace
+  Payments -.->|Trace Spans| Trace

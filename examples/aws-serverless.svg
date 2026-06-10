@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1148" height="480" viewBox="0 0 1148 480" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<path id="edge-1" class="diagra-edge" d="M 172 158 L 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 484 158 L 664 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-3" class="diagra-edge" d="M 796 158 C 877 158, 895 84, 976 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-4" class="diagra-edge" d="M 796 158 C 877 158, 895 232, 976 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<g id="node-user" class="diagra-node" data-icon="generic-user">
+  <rect x="40" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="106" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">User</text>
+</g>
+<g id="node-apigw" class="diagra-node" data-icon="aws-apigateway">
+  <rect x="352" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon API Gateway">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M7.5 11h17v10h-17z" fill="#ffb647" opacity="0.9"/><path d="M11 16h10" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">API</text>
+</svg>
+  <text x="418" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API Gateway</text>
+</g>
+<g id="node-lambda" class="diagra-node" data-icon="aws-lambda">
+  <rect x="664" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS Lambda">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="16" rx="3" fill="#ffb647" opacity="0.95"/><path d="M11 6v4M16 6v4M21 6v4M11 22v4M16 22v4M21 22v4" stroke="#FFFFFF" stroke-width="1.1"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">λ</text>
+</svg>
+  <text x="730" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Lambda</text>
+</g>
+<g id="node-dynamo" class="diagra-node" data-icon="aws-dynamodb">
+  <rect x="976" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon DynamoDB">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#ffb647"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#ffb647"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">DB</text>
+</svg>
+  <text x="1042" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">DynamoDB</text>
+</g>
+<g id="node-s3" class="diagra-node" data-icon="aws-s3">
+  <rect x="976" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon S3">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6 25 11v10l-9 5-9-5V11l9-5Z" fill="#ffb647" opacity="0.95"/><path d="M10 13h12M10 18h12" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">S3</text>
+</svg>
+  <text x="1042" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">S3</text>
+</g>
+</svg>

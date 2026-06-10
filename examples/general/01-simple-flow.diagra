@@ -1,0 +1,17 @@
+%%diagra:theme light
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% A minimal five-node flow for README quickstarts.
+  Idea[Product Idea]:::generic-user
+  API[Backend API]:::generic-api
+  Worker[Background Worker]:::generic-server
+  Database[Application Database]:::generic-database
+  Dashboard[Admin Dashboard]:::generic-browser
+
+  Idea -->|Submit| API
+  API -->|Queue Job| Worker
+  Worker -->|Persist Result| Database
+  Database -->|Read Metrics| Dashboard

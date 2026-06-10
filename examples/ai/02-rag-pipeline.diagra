@@ -1,0 +1,31 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title RAG Pipeline
+%%diagra:subtitle Retrieval Augmented Generation
+
+flowchart LR
+  %% Online query path retrieves context and asks an LLM.
+  User[User Query]:::generic-user
+  QueryEmbedder[Query Embedder]:::generic-api
+  VectorDB[Vector Database]:::generic-database
+  Retriever[Document Retriever]:::generic-server
+  Context[Context Builder]:::generic-server
+  LLM[LLM Response Generator]:::generic-api
+  Response[Response to User]:::generic-user
+
+  %% Offline ingestion path populates the vector database.
+  Ingestion[Document Ingestion]:::generic-server
+  Chunker[Document Chunker]:::generic-server
+  Embedder[Embedding Generator]:::generic-api
+
+  User -->|Submit Question| QueryEmbedder
+  QueryEmbedder -->|Vector Search| VectorDB
+  VectorDB -->|Top Matches| Retriever
+  Retriever -->|Relevant Chunks| Context
+  Context -->|Prompt Context| LLM
+  LLM -->|Answer| Response
+  Ingestion -->|Raw Documents| Chunker
+  Chunker -->|Chunks| Embedder
+  Embedder -->|Store Embeddings| VectorDB

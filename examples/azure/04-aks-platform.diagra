@@ -1,0 +1,33 @@
+%%diagra:theme dark
+%%diagra:icons azure
+%%diagra:animate pulse
+%%diagra:font Inter
+
+flowchart LR
+  %% Container images are built and deployed into AKS.
+  Developers[Platform Developers]:::generic-user
+  ACR[Azure Container Registry]:::generic-server
+  AKS[AKS Cluster]:::azure-aks
+
+  %% Nodes below represent workloads inside the AKS cluster.
+  Ingress[Ingress Controller]:::generic-api
+  Orders[Orders Microservice]:::generic-server
+  Payments[Payments Microservice]:::generic-server
+  Sidecar[Sidecar Proxies]:::generic-server
+
+  %% Managed services support state, messaging, and monitoring.
+  Cosmos[Cosmos DB]:::azure-cosmosdb
+  ServiceBus[Service Bus]:::azure-servicebus
+  Monitor[Azure Monitor]:::azure-monitor
+
+  Developers -->|Push Images| ACR
+  ACR -->|Pull Images| AKS
+  AKS -->|Hosts| Ingress
+  Ingress -->|Route Orders| Orders
+  Ingress -->|Route Payments| Payments
+  Sidecar -->|Proxy Traffic| Orders
+  Sidecar -->|Proxy Traffic| Payments
+  Orders -->|Orders Data| Cosmos
+  Payments -->|Publish Events| ServiceBus
+  AKS -.->|Cluster Metrics| Monitor
+  Sidecar -.->|Mesh Telemetry| Monitor

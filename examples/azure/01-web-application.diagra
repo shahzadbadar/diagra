@@ -1,0 +1,24 @@
+%%diagra:theme dark
+%%diagra:icons azure
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Azure Front Door handles global entry and routes to the web application.
+  Users[Web Users]:::generic-browser
+  FrontDoor[Azure Front Door]:::azure-frontdoor
+  AppService[App Service Web App]:::azure-appservice
+  Functions[Azure Functions API]:::azure-functions
+
+  %% Application state and files are stored in managed Azure data services.
+  Cosmos[Cosmos DB]:::azure-cosmosdb
+  Blob[Blob Storage]:::azure-blobstorage
+  Insights[Application Insights]:::azure-monitor
+
+  Users -->|HTTPS| FrontDoor
+  FrontDoor -->|Route Web Traffic| AppService
+  AppService -->|API Calls| Functions
+  Functions -->|Read and Write| Cosmos
+  Functions -->|Store Files| Blob
+  AppService -.->|Telemetry| Insights
+  Functions -.->|Traces and Metrics| Insights

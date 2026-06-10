@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Azure Front Door">
+  <rect x="4" y="4" width="24" height="24" rx="5" fill="#0078D4"/>
+  <circle cx="16" cy="16" r="8.5" fill="#479ee0" opacity="0.9"/><path d="M8 16h16M16 8c2 2.4 3 5 3 8s-1 5.6-3 8M16 8c-2 2.4-3 5-3 8s1 5.6 3 8" stroke="#FFFFFF" stroke-width="1.1" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">FD</text>
+</svg>

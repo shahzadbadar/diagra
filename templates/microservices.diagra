@@ -1,0 +1,14 @@
+%%diagra:theme neutral
+%%diagra:icons generic
+
+flowchart LR
+  web[Web App]:::generic-browser
+  api[API Service]:::generic-api
+  queue[Work Queue]:::generic-queue
+  worker[Worker]:::generic-server
+  data[Data Store]:::generic-database
+
+  web --> api
+  api --> queue
+  queue --> worker
+  worker --> data

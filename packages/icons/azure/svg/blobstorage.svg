@@ -1,0 +1,5 @@
+<svg viewBox="0 0 32 32" role="img" aria-label="Azure Blob Storage">
+  <rect x="4" y="4" width="24" height="24" rx="5" fill="#0078D4"/>
+  <path d="M16 6 25 11v10l-9 5-9-5V11l9-5Z" fill="#479ee0" opacity="0.95"/><path d="M10 13h12M10 18h12" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">BLB</text>
+</svg>

@@ -1,0 +1,13 @@
+%%diagra:theme brand
+%%diagra:icons azure
+%%diagra:accent #0078D4
+
+flowchart LR
+  frontdoor[Front Door]:::azure-frontdoor
+  apim[API Management]:::azure-apim
+  functions[Functions]:::azure-functions
+  cosmos[Cosmos DB]:::azure-cosmosdb
+
+  frontdoor --> apim
+  apim --> functions
+  functions --> cosmos

@@ -1,0 +1,26 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title Claude Code Agent Loop
+%%diagra:subtitle Agentic coding workflow
+
+flowchart LR
+  %% The developer delegates a coding task to an agentic coding loop.
+  Developer[Developer]:::generic-user
+  Agent[Claude Code Agent]:::generic-api
+  Reader[Codebase Reader]:::generic-server
+  Editor[File Editor]:::generic-server
+  Tests[Test Runner]:::generic-server
+  Terminal[Terminal Commands]:::generic-server
+  Git[Git Commit]:::generic-server
+
+  Developer -->|Gives Task| Agent
+  Agent -->|Reads Context| Reader
+  Reader -->|Plan Changes| Agent
+  Agent -->|Edit Files| Editor
+  Editor -->|Run Commands| Terminal
+  Terminal -->|Execute Tests| Tests
+  Tests -->|Tests Fail| Editor
+  Tests -->|Tests Pass| Git
+  Git -->|Summary| Developer

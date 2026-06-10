@@ -1,0 +1,28 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Training data and artifacts are stored in S3.
+  DataScientists[Data Scientists]:::generic-user
+  TrainingData[S3 Training Dataset]:::aws-s3
+  SageMakerTrain[SageMaker Training Job]:::aws-sagemaker
+  ModelArtifacts[S3 Model Artifacts]:::aws-s3
+
+  %% The trained model is deployed behind an API.
+  SageMakerEndpoint[SageMaker Endpoint]:::aws-sagemaker
+  Lambda[Inference Wrapper Lambda]:::aws-lambda
+  APIGW[Prediction API Gateway]:::aws-apigateway
+  ClientApps[Client Applications]:::generic-browser
+  CloudWatch[Model Monitoring]:::aws-cloudwatch
+
+  DataScientists -->|Upload Features| TrainingData
+  TrainingData -->|Train Model| SageMakerTrain
+  SageMakerTrain -->|Write Artifacts| ModelArtifacts
+  ModelArtifacts -->|Deploy Model| SageMakerEndpoint
+  ClientApps -->|Prediction Request| APIGW
+  APIGW -->|Invoke| Lambda
+  Lambda -->|Invoke Endpoint| SageMakerEndpoint
+  SageMakerEndpoint -.->|Latency and Drift| CloudWatch
+  Lambda -.->|Errors and Logs| CloudWatch

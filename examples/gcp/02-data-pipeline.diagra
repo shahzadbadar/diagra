@@ -1,0 +1,27 @@
+%%diagra:theme light
+%%diagra:icons gcp
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart TD
+  %% Streaming and scheduled workloads land raw data in Cloud Storage.
+  Sources[Source Systems]:::generic-server
+  PubSub[Pub/Sub Streaming]:::gcp-pubsub
+  Composer[Cloud Composer Airflow]:::generic-server
+  RawStorage[Cloud Storage Raw Data]:::gcp-cloudstorage
+
+  %% Dataflow transforms data into BigQuery for analytics.
+  Dataflow[Dataflow ETL]:::gcp-dataflow
+  BigQuery[BigQuery Warehouse]:::gcp-bigquery
+  Looker[Looker Dashboards]:::generic-browser
+  Monitoring[Cloud Monitoring]:::gcp-monitoring
+
+  Sources -->|Events| PubSub
+  Sources -->|Batch Files| RawStorage
+  Composer -->|Schedule Jobs| Dataflow
+  PubSub -->|Streaming Input| Dataflow
+  RawStorage -->|Batch Input| Dataflow
+  Dataflow -->|Curated Tables| BigQuery
+  BigQuery -->|Dashboards| Looker
+  Dataflow -.->|Job Metrics| Monitoring
+  BigQuery -.->|Query Metrics| Monitoring

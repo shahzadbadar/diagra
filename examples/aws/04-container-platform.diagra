@@ -1,0 +1,38 @@
+%%diagra:theme light
+%%diagra:icons aws
+%%diagra:animate pulse
+%%diagra:font Inter
+
+flowchart LR
+  %% Edge routing sends customer traffic to the container platform.
+  Users[Customers]:::generic-browser
+  Route53[Route53 DNS]:::aws-route53
+  CloudFront[CloudFront CDN]:::aws-cloudfront
+  ELB[Application Load Balancer]:::aws-elb
+
+  %% VPC and subnet nodes represent the platform boundary without Mermaid subgraphs.
+  VPC[Production VPC]:::aws-vpc
+  PublicSubnet[Public Subnets]:::aws-vpc
+  PrivateSubnet[Private App Subnets]:::aws-vpc
+  ECS[ECS Service Cluster]:::aws-ecs
+  Fargate[Fargate Tasks]:::aws-fargate
+  Registry[Container Registry]:::generic-server
+
+  %% Stateful dependencies remain in private networking.
+  RDS[PostgreSQL RDS]:::aws-rds
+  Cache[ElastiCache Redis]:::generic-database
+  CloudWatch[Container Observability]:::aws-cloudwatch
+
+  Users -->|DNS Lookup| Route53
+  Route53 -->|Resolve Edge| CloudFront
+  CloudFront -->|HTTPS Origin| ELB
+  ELB -->|Route Traffic| PublicSubnet
+  PublicSubnet -->|Forward to Services| PrivateSubnet
+  PrivateSubnet -->|Hosts| ECS
+  ECS -->|Runs Tasks| Fargate
+  Registry -->|Pull Images| Fargate
+  Fargate -->|SQL Queries| RDS
+  Fargate -->|Cache Reads| Cache
+  VPC -->|Contains| PublicSubnet
+  VPC -->|Contains| PrivateSubnet
+  Fargate -.->|Logs and Metrics| CloudWatch

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="480" viewBox="0 0 980 480" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F8F9FA;
+  --node-border: #E2E8F0;
+  --node-text: #1A202C;
+  --edge-color: #94A3B8;
+  --edge-label: #64748B;
+  --accent: #4285F4;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<path id="edge-1" class="diagra-edge" d="M 172 84 C 253 84, 271 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 172 232 C 253 232, 271 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-3" class="diagra-edge" d="M 484 158 L 664 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+
+<g id="node-storage" class="diagra-node" data-icon="gcp-cloudstorage">
+  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Cloud Storage">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <path d="M16 6 25 11v10l-9 5-9-5V11l9-5Z" fill="#77a7f7" opacity="0.95"/><path d="M10 13h12M10 18h12" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CS</text>
+</svg>
+  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Cloud Storage</text>
+</g>
+<g id="node-dataflow" class="diagra-node" data-icon="gcp-dataflow">
+  <rect x="352" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Dataflow">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#77a7f7" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">DF</text>
+</svg>
+  <text x="418" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Dataflow</text>
+</g>
+<g id="node-bigquery" class="diagra-node" data-icon="gcp-bigquery">
+  <rect x="664" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="BigQuery">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#77a7f7"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#77a7f7"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">BQ</text>
+</svg>
+  <text x="730" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">BigQuery</text>
+</g>
+<g id="node-pubsub" class="diagra-node" data-icon="gcp-pubsub">
+  <rect x="40" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Pub/Sub">
+  <path d="M9.5 25.8h13.3a6.1 6.1 0 0 0 .8-12.1 8.4 8.4 0 0 0-16.1-1.9A7.2 7.2 0 0 0 9.5 25.8Z" fill="#4285F4"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#77a7f7" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">PS</text>
+</svg>
+  <text x="106" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Pub/Sub</text>
+</g>
+</svg>

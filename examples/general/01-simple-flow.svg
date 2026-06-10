@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="400" viewBox="0 0 1460 400" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F8F9FA;
+  --node-border: #E2E8F0;
+  --node-text: #1A202C;
+  --edge-color: #94A3B8;
+  --edge-label: #64748B;
+  --accent: #6366F1;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 172 84 L 352 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="237" y="64" width="50" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="262" y="76" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Submit</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 484 84 L 664 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="538.5" y="96" width="71" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="574" y="108" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Queue Job</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 796 84 L 976 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="833" y="128" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="886" y="140" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Persist Result</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 1108 84 L 1288 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1152" y="160" width="92" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="1198" y="172" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Read Metrics</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<g id="node-Idea" class="diagra-node" data-icon="generic-user">
+  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="user"><circle cx="16" cy="11" r="6" fill="#64748B"/><path d="M6 28c1.4-6 5-9 10-9s8.6 3 10 9" fill="#64748B"/></svg>
+
+  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Product Idea</text>
+</g>
+<g id="node-API" class="diagra-node" data-icon="generic-api">
+  <rect x="352" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="402" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="418" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Backend API</text>
+</g>
+<g id="node-Worker" class="diagra-node" data-icon="generic-server">
+  <rect x="664" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="714" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="730" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Background Worker</text>
+</g>
+<g id="node-Database" class="diagra-node" data-icon="generic-database">
+  <rect x="976" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1026" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="1042" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Application Database</text>
+</g>
+<g id="node-Dashboard" class="diagra-node" data-icon="generic-browser">
+  <rect x="1288" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1338" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="1354" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Admin Dashboard</text>
+</g>
+</svg>

@@ -1,0 +1,31 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate none
+%%diagra:font Inter
+
+flowchart LR
+  %% Edge controls block malicious traffic before it reaches application services.
+  Internet[Internet Clients]:::generic-browser
+  WAF[AWS WAF Rules]:::aws-waf
+  CloudFront[CloudFront Distribution]:::aws-cloudfront
+  APIGW[Secure API Gateway]:::aws-apigateway
+  Cognito[Cognito User Pool]:::aws-cognito
+
+  %% Identity, encryption, and secrets are represented as security dependencies.
+  Lambda[Protected Lambda APIs]:::aws-lambda
+  IAM[IAM Execution Roles]:::aws-iam
+  KMS[KMS Encryption Keys]:::aws-kms
+  Secrets[Secrets Manager]:::aws-secretsmanager
+  CloudWatch[Security Alerts]:::aws-cloudwatch
+
+  Internet -->|HTTPS| WAF
+  WAF -->|Allowed Requests| CloudFront
+  CloudFront -->|Origin Request| APIGW
+  Cognito -->|JWT Validation| APIGW
+  APIGW -->|Invoke| Lambda
+  IAM -->|Least Privilege Access| Lambda
+  KMS -->|Encrypt Data| Lambda
+  Secrets -->|Runtime Secrets| Lambda
+  WAF -.->|Blocked Requests| CloudWatch
+  APIGW -.->|Audit Logs| CloudWatch
+  Lambda -.->|Security Events| CloudWatch

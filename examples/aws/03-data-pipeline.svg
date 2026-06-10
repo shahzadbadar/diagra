@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1600" viewBox="0 0 1400 1600" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 106 128 C 154 128, 58 188, 106 188" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="46" y="138" width="120" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="150" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Streaming Events</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 106 128 C 154 128, 58 336, 106 336" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="63.5" y="276" width="85" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="288" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Batch Files</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 106 276 C 154 276, 58 336, 106 336" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="49.5" y="302" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="314" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Delivery Stream</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 106 424 C 154 424, 58 484, 106 484" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="35.5" y="434" width="141" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="446" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Crawl and Transform</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 106 572 C 154 572, 58 632, 106 632" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="49.5" y="582" width="113" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="594" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Curated Parquet</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 106 720 C 154 720, 58 780, 106 780" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="67" y="730" width="78" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="742" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Ad Hoc SQL</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 106 720 C 154 720, 58 928, 106 928" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="53" y="868" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="880" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Load Warehouse</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 106 1016 C 154 1016, 58 1076, 106 1076" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="42.5" y="1026" width="127" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="1038" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Training Features</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-9" class="diagra-edge" d="M 106 868 C 154 868, 58 1224, 106 1224" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="67" y="1058" width="78" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="1070" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">BI Queries</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-10" class="diagra-edge" d="M 106 1016 C 154 1016, 58 1224, 106 1224" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="70.5" y="1164" width="71" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="1176" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">BI Models</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-11" class="diagra-edge" d="M 106 572 C 154 572, 58 1372, 106 1372" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="63.5" y="1192" width="85" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="1204" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Job Metrics</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-12" class="diagra-edge" d="M 106 276 C 154 276, 58 1372, 106 1372" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="53" y="900" width="106" height="16" rx="4" fill="var(--bg)" opacity="0.9"/>
+  <text x="106" y="912" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Stream Metrics</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.8s" repeatCount="indefinite">
+    <mpath href="#edge-5"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1s" repeatCount="indefinite">
+    <mpath href="#edge-6"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.2000000000000002s" repeatCount="indefinite">
+    <mpath href="#edge-7"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.4000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-8"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.6s" repeatCount="indefinite">
+    <mpath href="#edge-9"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.8s" repeatCount="indefinite">
+    <mpath href="#edge-10"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2s" repeatCount="indefinite">
+    <mpath href="#edge-11"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.2s" repeatCount="indefinite">
+    <mpath href="#edge-12"/>
+  </animateMotion>
+</circle>
+<g id="node-Producers" class="diagra-node" data-icon="generic-server">
+  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Application Producers</text>
+</g>
+<g id="node-Kinesis" class="diagra-node" data-icon="aws-kinesis">
+  <rect x="40" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon Kinesis">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#ffb647" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">KIN</text>
+</svg>
+  <text x="106" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Kinesis Data Stream</text>
+</g>
+<g id="node-RawS3" class="diagra-node" data-icon="aws-s3">
+  <rect x="40" y="336" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon S3">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6 25 11v10l-9 5-9-5V11l9-5Z" fill="#ffb647" opacity="0.95"/><path d="M10 13h12M10 18h12" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">S3</text>
+</svg>
+  <text x="106" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">S3 Raw Data Lake</text>
+</g>
+<g id="node-Glue" class="diagra-node" data-icon="aws-glue">
+  <rect x="40" y="484" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS Glue">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#ffb647" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">GL</text>
+</svg>
+  <text x="106" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Glue ETL Jobs</text>
+</g>
+<g id="node-CuratedS3" class="diagra-node" data-icon="aws-s3">
+  <rect x="40" y="632" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="644" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon S3">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6 25 11v10l-9 5-9-5V11l9-5Z" fill="#ffb647" opacity="0.95"/><path d="M10 13h12M10 18h12" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">S3</text>
+</svg>
+  <text x="106" y="700" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">S3 Curated Zone</text>
+</g>
+<g id="node-Athena" class="diagra-node" data-icon="aws-athena">
+  <rect x="40" y="780" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="792" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon Athena">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#ffb647"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#ffb647"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">AT</text>
+</svg>
+  <text x="106" y="848" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Athena Query Layer</text>
+</g>
+<g id="node-Redshift" class="diagra-node" data-icon="aws-redshift">
+  <rect x="40" y="928" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="940" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon Redshift">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#ffb647"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#ffb647"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">RS</text>
+</svg>
+  <text x="106" y="996" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Redshift Warehouse</text>
+</g>
+<g id="node-SageMaker" class="diagra-node" data-icon="aws-sagemaker">
+  <rect x="40" y="1076" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="1088" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon SageMaker">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="16" rx="3" fill="#ffb647" opacity="0.95"/><path d="M11 6v4M16 6v4M21 6v4M11 22v4M16 22v4M21 22v4" stroke="#FFFFFF" stroke-width="1.1"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">SM</text>
+</svg>
+  <text x="106" y="1144" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">SageMaker ML Training</text>
+</g>
+<g id="node-QuickSight" class="diagra-node" data-icon="generic-browser">
+  <rect x="40" y="1224" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="1236" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="106" y="1292" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">QuickSight Dashboards</text>
+</g>
+<g id="node-CloudWatch" class="diagra-node" data-icon="aws-cloudwatch">
+  <rect x="40" y="1372" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="90" y="1384" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon CloudWatch">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#ffb647" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CW</text>
+</svg>
+  <text x="106" y="1440" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Pipeline Monitoring</text>
+</g>
+</svg>

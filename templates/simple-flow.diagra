@@ -1,0 +1,10 @@
+%%diagra:theme light
+%%diagra:icons generic
+
+flowchart LR
+  browser[Browser]:::generic-browser
+  api[API]:::generic-api
+  db[Database]:::generic-database
+
+  browser --> api
+  api --> db

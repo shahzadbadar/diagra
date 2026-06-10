@@ -1,0 +1,14 @@
+%%diagra:theme brand
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:accent #FF6B35
+
+flowchart TB
+  user[User]:::generic-user
+  cloud[Cloud]:::generic-cloud
+  server[Server]:::generic-server
+  data[Database]:::generic-database
+
+  user --> cloud
+  cloud --> server
+  server --> data

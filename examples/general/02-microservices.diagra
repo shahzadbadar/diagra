@@ -1,0 +1,31 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Generic cloud-neutral microservices architecture.
+  Clients[Client Apps]:::generic-browser
+  Gateway[API Gateway]:::generic-api
+  Auth[Auth Service]:::generic-server
+  Users[User Service]:::generic-server
+  Orders[Order Service]:::generic-server
+  Payments[Payment Service]:::generic-server
+  Notifications[Notification Service]:::generic-server
+
+  %% Each service owns data and services communicate asynchronously.
+  UserDB[User Database]:::generic-database
+  OrderDB[Order Database]:::generic-database
+  PaymentDB[Payment Database]:::generic-database
+  Queue[Message Queue]:::generic-queue
+
+  Clients -->|HTTPS| Gateway
+  Gateway -->|Authenticate| Auth
+  Gateway -->|Users API| Users
+  Gateway -->|Orders API| Orders
+  Orders -->|Charge Payment| Payments
+  Orders -->|Publish Events| Queue
+  Queue -->|Notify Customer| Notifications
+  Users -->|Owns| UserDB
+  Orders -->|Owns| OrderDB
+  Payments -->|Owns| PaymentDB

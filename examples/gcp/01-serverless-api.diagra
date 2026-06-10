@@ -1,0 +1,24 @@
+%%diagra:theme dark
+%%diagra:icons gcp
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Cloud Endpoints exposes a managed API backed by Cloud Run.
+  Clients[Client Applications]:::generic-browser
+  Gateway[Cloud API Gateway]:::generic-api
+  CloudRun[Cloud Run Service]:::gcp-cloudrun
+
+  %% Serverless data and messaging services support the API.
+  Firestore[Firestore Database]:::gcp-firestore
+  Storage[Cloud Storage Files]:::gcp-cloudstorage
+  PubSub[Cloud Pub/Sub Topic]:::gcp-pubsub
+  Monitoring[Cloud Monitoring]:::gcp-monitoring
+
+  Clients -->|HTTPS| Gateway
+  Gateway -->|Route Request| CloudRun
+  CloudRun -->|Read and Write| Firestore
+  CloudRun -->|Store Objects| Storage
+  CloudRun -->|Publish Events| PubSub
+  CloudRun -.->|Metrics and Logs| Monitoring
+  PubSub -.->|Topic Metrics| Monitoring

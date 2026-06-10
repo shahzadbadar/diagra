@@ -1,0 +1,31 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+%%diagra:title Multi-Agent Orchestration
+
+flowchart LR
+  %% The orchestrator decomposes work and delegates to specialist agents.
+  User[User Request]:::generic-user
+  Orchestrator[Orchestrator Agent]:::generic-api
+  Research[Research Agent]:::generic-server
+  Code[Code Agent]:::generic-server
+  Review[Review Agent]:::generic-server
+
+  %% Shared tools and memory support the agents.
+  WebSearch[Tool Web Search]:::generic-cloud
+  Executor[Tool Code Executor]:::generic-server
+  FileSystem[Tool File System]:::generic-server
+  Memory[Memory Store]:::generic-database
+  Final[Final Response]:::generic-user
+
+  User -->|Goal| Orchestrator
+  Orchestrator -->|Research Task| Research
+  Orchestrator -->|Build Task| Code
+  Research -->|Use Search| WebSearch
+  Code -->|Run Code| Executor
+  Code -->|Read and Write Files| FileSystem
+  Research -->|Store Findings| Memory
+  Code -->|Store Artifacts| Memory
+  Orchestrator -->|Review Draft| Review
+  Review -->|Approved Answer| Final

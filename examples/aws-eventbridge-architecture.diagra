@@ -1,0 +1,62 @@
+%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  %% Clients
+  Client[Web / Mobile / Partner Apps]:::generic-browser
+
+  %% Edge Layer
+  APIGW[API Gateway]:::aws-apigateway
+
+  %% Compute Layer
+  Lambda[Lambda]:::aws-lambda
+
+  %% Event Layer
+  EventBridge[EventBridge]:::aws-eventbridge
+  SNS[SNS]:::aws-sns
+
+  %% Data Layer
+  DynamoDB[DynamoDB]:::aws-dynamodb
+  SQS[SQS Queue]:::aws-sqs
+  DLQ[Dead Letter Queue]:::aws-sqs
+
+  %% Consumers
+  Consumer1[Downstream Service A]:::generic-server
+  Consumer2[Downstream Service B]:::generic-server
+  Email[Email / SMS / Webhook]:::generic-api
+
+  %% Observability
+  CloudWatch[CloudWatch]:::aws-cloudwatch
+  XRay[X-Ray]:::aws-xray
+
+  %% Main request flow
+  Client -->|HTTPS Request| APIGW
+  APIGW -->|Invoke| Lambda
+
+  %% Processing flow
+  Lambda -->|Read / Write| DynamoDB
+  Lambda -->|Publish Event| EventBridge
+
+  %% Event routing
+  EventBridge -->|Route Event| SNS
+  EventBridge -->|Async Job| SQS
+
+  %% Notification fanout
+  SNS -->|Notify| Email
+  SNS -->|Trigger| Consumer1
+
+  %% Queue processing
+  SQS -->|Process| Consumer2
+  SQS -->|Failed Retries| DLQ
+
+  %% Monitoring (dashed)
+  APIGW -.->|Logs / Metrics| CloudWatch
+  Lambda -.->|Logs / Metrics| CloudWatch
+  EventBridge -.->|Rule Metrics| CloudWatch
+  SNS -.->|Delivery Metrics| CloudWatch
+  SQS -.->|Queue Metrics| CloudWatch
+  DLQ -.->|Failure Alerts| CloudWatch
+  APIGW -.->|Trace| XRay
+  Lambda -.->|Trace| XRay

@@ -1,0 +1,13 @@
+{
+  "prefix": "generic",
+  "icons": {
+    "server": "svg/server.svg",
+    "database": "svg/database.svg",
+    "user": "svg/user.svg",
+    "cloud": "svg/cloud.svg",
+    "api": "svg/api.svg",
+    "mobile": "svg/mobile.svg",
+    "browser": "svg/browser.svg",
+    "queue": "svg/queue.svg"
+  }
+}
