@@ -1,6 +1,6 @@
 export type ThemeName = "light" | "dark" | "neutral" | "brand";
 export type IconPackName = "aws" | "gcp" | "azure" | "generic" | "none";
-export type AnimationName = "flow" | "pulse" | "none";
+export type AnimationName = "flow" | "none";
 export type OutputFormat = "svg" | "png" | "html" | "drawio" | "mmd" | "all";
 
 export interface DiagraDirectives {
@@ -9,6 +9,8 @@ export interface DiagraDirectives {
   animate: AnimationName;
   font: string;
   accent?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export interface RenderOptions extends Partial<DiagraDirectives> {

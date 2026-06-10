@@ -9,7 +9,7 @@ const DEFAULT_DIRECTIVES: DiagraDirectives = {
 
 const themes = new Set<ThemeName>(["light", "dark", "neutral", "brand"]);
 const iconPacks = new Set<IconPackName>(["aws", "gcp", "azure", "generic", "none"]);
-const animations = new Set<AnimationName>(["flow", "pulse", "none"]);
+const animations = new Set<AnimationName>(["flow", "none"]);
 
 export class DirectiveParser {
   parse(source: string): { directives: DiagraDirectives; mermaidSource: string } {
@@ -31,6 +31,8 @@ export class DirectiveParser {
       if (key === "animate" && animations.has(value as AnimationName)) directives.animate = value as AnimationName;
       if (key === "font") directives.font = value;
       if (key === "accent" && /^#[0-9a-f]{6}$/i.test(value)) directives.accent = value;
+      if (key === "title") directives.title = value;
+      if (key === "subtitle") directives.subtitle = value;
     }
 
     return { directives, mermaidSource: mermaidLines.join("\n").trim() };

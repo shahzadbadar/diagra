@@ -24,14 +24,15 @@ export class EdgeRenderer {
     const path = `<path id="${edge.id}" class="diagra-edge" d="${pathData}" stroke="var(--edge-color)" stroke-width="${strokeWidth}" fill="none" marker-end="url(#arrow)"${dash}${opacity}/>`;
     if (!edge.label) return path;
 
-    const labelX = (start.x + end.x) / 2;
+    const midX = (from.x + from.width / 2 + to.x + to.width / 2) / 2;
+    const midY = (from.y + from.height / 2 + to.y + to.height / 2) / 2 - 12;
     const labelWidth = Math.max(44, edge.label.length * 7 + 8);
     const labelHeight = 16;
-    const labelY = this.placeLabel(labelX, (start.y + end.y) / 2 - 8, labelWidth, labelHeight, nodesById);
+    const labelY = this.placeLabel(midX, midY, labelWidth, labelHeight, nodesById);
     return `<g class="diagra-edge-label">
   ${path}
-  <rect x="${labelX - labelWidth / 2}" y="${labelY - 12}" width="${labelWidth}" height="${labelHeight}" rx="4" fill="var(--bg)" opacity="0.9"/>
-  <text x="${labelX}" y="${labelY}" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">${escapeXml(edge.label)}</text>
+  <rect x="${midX - labelWidth / 2 - 4}" y="${labelY - 10}" width="${labelWidth + 8}" height="${labelHeight}" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="${midX}" y="${labelY}" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">${escapeXml(edge.label)}</text>
 </g>`;
   }
 

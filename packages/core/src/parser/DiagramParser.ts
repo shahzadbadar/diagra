@@ -1,6 +1,10 @@
 import { DirectiveParser } from "./DirectiveParser";
 import type { DiagramAst, DiagramEdge, DiagramNode, ParsedDiagram } from "../types";
 
+type MermaidParserModule = {
+  parse?: (diagramType: string, text: string) => unknown | Promise<unknown>;
+};
+
 export class DiagramParser {
   private readonly directiveParser = new DirectiveParser();
 
@@ -29,32 +33,79 @@ export class DiagramParser {
 
     for (const line of lines.slice(1)) {
       if (line.startsWith("%%")) continue;
-      const edge = this.parseEdge(line);
-      if (edge) {
-        const left = this.parseEndpoint(edge.left);
-        const right = this.parseEndpoint(edge.right);
-        this.upsertNode(nodeMap, left);
-        this.upsertNode(nodeMap, right);
-        edges.push({ id: `edge-${edges.length + 1}`, from: left.id, to: right.id, label: edge.label, dashed: edge.dashed });
+      const parsedEdges = this.parseEdges(line);
+      if (parsedEdges.length > 0) {
+        for (const edge of parsedEdges) {
+          const left = this.parseEndpoint(edge.left);
+          const right = this.parseEndpoint(edge.right);
+          this.upsertNode(nodeMap, left);
+          this.upsertNode(nodeMap, right);
+          edges.push({ id: `edge-${edges.length + 1}`, from: left.id, to: right.id, label: edge.label, dashed: edge.dashed });
+        }
       } else {
         const node = this.parseEndpoint(line);
         this.upsertNode(nodeMap, node);
       }
     }
 
+    const cycleNodes = this.detectCycle([...nodeMap.values()], edges);
+    if (cycleNodes.length > 0) {
+      throw new Error(`Cyclic dependency detected. Nodes in cycle: ${cycleNodes.join(", ")}. Diagra requires a DAG (no cycles).`);
+    }
+
     const nodes = this.layout([...nodeMap.values()], edges, direction);
     return { type: "flowchart", direction, nodes, edges };
   }
 
-  private parseEdge(raw: string): { left: string; right: string; label?: string; dashed: boolean } | undefined {
-    const edgeMatch = raw.match(/^(.*?)\s*(-\.->|-->)\s*(?:\|([^|]+)\|\s*)?(.*?)\s*;?$/);
-    if (!edgeMatch) return undefined;
-    return {
-      left: edgeMatch[1],
-      right: edgeMatch[4],
-      label: edgeMatch[3]?.trim(),
-      dashed: edgeMatch[2] === "-.->"
-    };
+  private detectCycle(
+    nodes: Array<Omit<DiagramNode, "x" | "y" | "width" | "height">>,
+    edges: DiagramEdge[]
+  ): string[] {
+    const nodeIds = new Set(nodes.map((n) => n.id));
+    const solidEdges = edges.filter((e) => !e.dashed && nodeIds.has(e.from) && nodeIds.has(e.to));
+    const indegree = new Map(nodes.map((n) => [n.id, 0]));
+    const outgoing = new Map<string, string[]>(nodes.map((n) => [n.id, []]));
+    for (const e of solidEdges) {
+      indegree.set(e.to, (indegree.get(e.to) ?? 0) + 1);
+      outgoing.get(e.from)!.push(e.to);
+    }
+    const queue = nodes.filter((n) => (indegree.get(n.id) ?? 0) === 0).map((n) => n.id);
+    for (let i = 0; i < queue.length; i++) {
+      for (const to of outgoing.get(queue[i]) ?? []) {
+        const deg = (indegree.get(to) ?? 0) - 1;
+        indegree.set(to, deg);
+        if (deg === 0) queue.push(to);
+      }
+    }
+    if (queue.length < nodes.length) {
+      return nodes.filter((n) => !queue.includes(n.id)).map((n) => n.id);
+    }
+    return [];
+  }
+
+  private nodeDimensions(label: string): { width: number; height: number } {
+    const textWidth = Math.ceil(label.length * 7.5);
+    const width = Math.max(120, textWidth + 32);
+    const height = label.length > 20 ? 106 : 88;
+    return { width, height };
+  }
+
+  private parseEdges(raw: string): Array<{ left: string; right: string; label?: string; dashed: boolean }> {
+    const arrowPattern = /\s*(-\.->|-->)\s*(?:\|([^|]+)\|\s*)?/g;
+    const arrows = [...raw.matchAll(arrowPattern)];
+    if (arrows.length === 0) return [];
+
+    return arrows.map((arrow, index) => {
+      const nextArrow = arrows[index + 1];
+      const leftStart = index === 0 ? 0 : arrows[index - 1].index! + arrows[index - 1][0].length;
+      const rightEnd = nextArrow ? nextArrow.index! : raw.length;
+      return {
+        left: raw.slice(leftStart, arrow.index).trim(),
+        right: raw.slice(arrow.index! + arrow[0].length, rightEnd).trim().replace(/;$/, ""),
+        label: arrow[2]?.trim(),
+        dashed: arrow[1] === "-.->"
+      };
+    });
   }
 
   private parseEndpoint(raw: string): Omit<DiagramNode, "x" | "y" | "width" | "height"> {
@@ -87,19 +138,21 @@ export class DiagramParser {
   ): DiagramNode[] {
     const metrics = {
       padding: 40,
-      nodeWidth: 132,
       nodeHeight: 88,
       minHorizontalGap: 80,
       minVerticalGap: 60,
       layerGap: 180,
       observabilityGap: 96
     };
+
+    const dims = new Map(nodes.map((node) => [node.id, this.nodeDimensions(node.label)]));
+    const maxNodeWidth = Math.max(...[...dims.values()].map((d) => d.width), 132);
+
     const horizontal = direction === "LR" || direction === "RL";
     if (!horizontal) {
       return nodes.map((node, index) => ({
         ...node,
-        width: metrics.nodeWidth,
-        height: metrics.nodeHeight,
+        ...dims.get(node.id)!,
         x: metrics.padding,
         y: metrics.padding + index * (metrics.nodeHeight + metrics.minVerticalGap)
       }));
@@ -123,14 +176,18 @@ export class DiagramParser {
     const primaryIncoming = this.groupEdges(primaryLayoutEdges, "to");
     const primaryOutgoing = this.groupEdges(primaryLayoutEdges, "from");
 
-    const indegree = new Map(primaryNodes.map((node) => [node.id, primaryIncoming.get(node.id)?.length ?? 0]));
-    const queue = primaryNodes.filter((node) => indegree.get(node.id) === 0).map((node) => node.id);
-    for (let index = 0; index < queue.length; index += 1) {
-      const id = queue[index];
+    // BFS longest-path rank assignment
+    const bfsQueue = primaryNodes.filter((node) => (primaryIncoming.get(node.id)?.length ?? 0) === 0).map((node) => node.id);
+    let bfsIndex = 0;
+    while (bfsIndex < bfsQueue.length) {
+      const id = bfsQueue[bfsIndex++];
+      const currentRank = rank.get(id) ?? 0;
       for (const edge of primaryOutgoing.get(id) ?? []) {
-        rank.set(edge.to, Math.max(rank.get(edge.to) ?? 0, (rank.get(id) ?? 0) + 1));
-        indegree.set(edge.to, (indegree.get(edge.to) ?? 0) - 1);
-        if (indegree.get(edge.to) === 0) queue.push(edge.to);
+        const existingRank = rank.get(edge.to) ?? -1;
+        if (existingRank <= currentRank) {
+          rank.set(edge.to, currentRank + 1);
+          bfsQueue.push(edge.to);
+        }
       }
     }
 
@@ -155,7 +212,7 @@ export class DiagramParser {
     const layerX = new Map<number, number>();
     layerX.set(0, metrics.padding);
     for (let layer = 1; layer < layerCount; layer += 1) {
-      layerX.set(layer, (layerX.get(layer - 1) ?? metrics.padding) + metrics.nodeWidth + (columnGaps[layer - 1] ?? metrics.layerGap));
+      layerX.set(layer, (layerX.get(layer - 1) ?? metrics.padding) + maxNodeWidth + (columnGaps[layer - 1] ?? metrics.layerGap));
     }
 
     const rowPitch = metrics.nodeHeight + metrics.minVerticalGap;
@@ -171,10 +228,11 @@ export class DiagramParser {
       const layerHeight = layer.length * metrics.nodeHeight + Math.max(layer.length - 1, 0) * metrics.minVerticalGap;
       const yOffset = metrics.padding + (primaryHeight - layerHeight) / 2;
       layer.forEach((node, index) => {
+        const nodeDim = dims.get(node.id)!;
         positioned.set(node.id, {
           ...node,
-          width: metrics.nodeWidth,
-          height: metrics.nodeHeight,
+          width: nodeDim.width,
+          height: nodeDim.height,
           x: layerX.get(nodeRank) ?? metrics.padding,
           y: yOffset + index * rowPitch
         });
@@ -186,16 +244,18 @@ export class DiagramParser {
       .sort((a, b) => this.averageSourceRank(a.id, dashedEdges, rank) - this.averageSourceRank(b.id, dashedEdges, rank) || (order.get(a.id) ?? 0) - (order.get(b.id) ?? 0));
     const observabilityY = metrics.padding + primaryHeight + metrics.observabilityGap;
     const usedObservationX: number[] = [];
+    const obsMetrics = { padding: metrics.padding, nodeWidth: maxNodeWidth, layerGap: metrics.layerGap };
 
     for (const node of observabilityNodes) {
       const averageRank = this.averageSourceRank(node.id, dashedEdges, rank);
-      let x = this.interpolateLayerX(averageRank, layerX, metrics);
-      x = this.avoidHorizontalOverlap(x, usedObservationX, metrics.nodeWidth + metrics.minHorizontalGap);
+      let x = this.interpolateLayerX(averageRank, layerX, obsMetrics);
+      x = this.avoidHorizontalOverlap(x, usedObservationX, maxNodeWidth + metrics.minHorizontalGap);
       usedObservationX.push(x);
+      const nodeDim = dims.get(node.id)!;
       positioned.set(node.id, {
         ...node,
-        width: metrics.nodeWidth,
-        height: metrics.nodeHeight,
+        width: nodeDim.width,
+        height: nodeDim.height,
         x,
         y: observabilityY
       });
