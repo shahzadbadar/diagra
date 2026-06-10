@@ -243,8 +243,8 @@ Diagra is designed to be used by AI coding agents.
 
 Works out of the box with **Claude Code**, **Cursor**, **GitHub Copilot**, and **Codex** — just install Diagra and ask your agent to create a diagram.
 
-- `AGENTS.md` — instructions for any AI agent
-- `CLAUDE.md` — Claude Code specific instructions  
+- [`AGENTS.md`](AGENTS.md) — instructions for any AI agent
+- [`CLAUDE.md`](CLAUDE.md) — Claude Code specific instructions  
 - `llms.txt` — LLM discovery file
 
 ```bash
@@ -333,7 +333,7 @@ Full roadmap → [`ROADMAP.md`](ROADMAP.md)
 
 ## License
 
-MIT — free for personal and commercial use.
+[MIT License](LICENSE) — free for personal and commercial use.
 
 ---
 
