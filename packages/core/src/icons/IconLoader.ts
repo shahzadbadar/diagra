@@ -34,7 +34,6 @@ export class IconLoader {
     return [
       join(process.cwd(), "packages/icons", pack, "manifest.json"),
       join(process.cwd(), "icons", pack, "manifest.json"),
-      join(__dirname, "../../../icons", pack, "manifest.json"),
       join(__dirname, "../../icons", pack, "manifest.json")
     ];
   }

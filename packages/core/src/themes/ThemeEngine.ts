@@ -19,6 +19,7 @@ export class ThemeEngine {
   }
 
   toCssVariables(tokens: ThemeTokens): string {
+    const safeFont = tokens.font.replace(/[^A-Za-z0-9 \-]/g, "");
     return `:root {
   --bg: ${tokens.background};
   --node-bg: ${tokens.nodeBg};
@@ -27,7 +28,7 @@ export class ThemeEngine {
   --edge-color: ${tokens.edgeColor};
   --edge-label: ${tokens.edgeLabel};
   --accent: ${tokens.accent};
-  --font: '${tokens.font}', sans-serif;
+  --font: '${safeFont}', sans-serif;
 }`;
   }
 

@@ -9,7 +9,7 @@ const DEFAULT_DIRECTIVES: DiagraDirectives = {
 
 const themes = new Set<ThemeName>(["light", "dark", "neutral", "brand"]);
 const iconPacks = new Set<IconPackName>(["aws", "gcp", "azure", "generic", "none"]);
-const animations = new Set<AnimationName>(["flow", "pulse", "none"]);
+const animations = new Set<AnimationName>(["flow", "none"]);
 
 export class DirectiveParser {
   parse(source: string): { directives: DiagraDirectives; mermaidSource: string } {

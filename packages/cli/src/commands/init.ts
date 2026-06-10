@@ -10,10 +10,15 @@ export function initCommand(): Command {
     .option("-t, --template <name>", "template name", "simple-flow")
     .option("-o, --output <file>", "output file")
     .action(async (options: { template: string; output?: string }) => {
-      const output = options.output ?? `${options.template}.diagra`;
-      const templatePath = join(__dirname, "../../../../templates", `${options.template}.diagra`);
-      await mkdir(dirname(output), { recursive: true });
-      await copyFile(templatePath, output);
-      console.log(`Created ${output}`);
+      try {
+        const output = options.output ?? `${options.template}.diagra`;
+        const templatePath = join(__dirname, "../../../templates", `${options.template}.diagra`);
+        await mkdir(dirname(output), { recursive: true });
+        await copyFile(templatePath, output);
+        console.log(`Created ${output}`);
+      } catch (error) {
+        console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+        process.exit(1);
+      }
     });
 }

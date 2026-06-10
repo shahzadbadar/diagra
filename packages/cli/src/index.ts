@@ -15,4 +15,9 @@ program.addCommand(initCommand());
 program.addCommand(iconsCommand());
 program.addCommand(validateCommand());
 
-await program.parseAsync();
+try {
+  await program.parseAsync();
+} catch (error) {
+  console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+  process.exit(1);
+}

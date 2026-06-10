@@ -134,6 +134,12 @@ export class DiagramParser {
       }
     }
 
+    if (queue.length < primaryNodes.length) {
+      const visited = new Set(queue);
+      const cycleNodes = primaryNodes.filter((node) => !visited.has(node.id)).map((node) => node.id);
+      throw new Error(`Cyclic dependency detected. Nodes in cycle: ${cycleNodes.join(", ")}. Diagra requires a DAG (no cycles).`);
+    }
+
     const layers = new Map<number, Array<Omit<DiagramNode, "x" | "y" | "width" | "height">>>();
     for (const node of primaryNodes) {
       const nodeRank = rank.get(node.id) ?? 0;

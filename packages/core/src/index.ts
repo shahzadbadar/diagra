@@ -65,4 +65,8 @@ export class Diagra {
   async toDrawio(source: string, options: RenderOptions = {}): Promise<string> {
     return (await this.render(source, options)).drawio;
   }
+
+  async toPNGFromSVG(svg: string, options: RenderOptions = {}): Promise<Buffer> {
+    return this.pngExporter.export(svg, options);
+  }
 }

@@ -14,10 +14,19 @@ export function renderCommand(): Command {
     .option("--animate <animate>", "animation override")
     .option("--font <font>", "font override")
     .option("--accent <hex>", "accent color override")
-    .option("--width <px>", "PNG/SVG width", (value) => Number.parseInt(value, 10))
+    .option("--width <px>", "PNG/SVG width", (value) => {
+      const n = Number.parseInt(value, 10);
+      if (Number.isNaN(n) || n <= 0) throw new Error(`--width must be a positive integer, got: ${value}`);
+      return n;
+    })
     .option("--transparent", "transparent background")
     .action(async (file: string, rawOptions: RenderOptions & { format: string }) => {
-      await renderFile(file, rawOptions.format, rawOptions);
+      try {
+        await renderFile(file, rawOptions.format, rawOptions);
+      } catch (error) {
+        console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+        process.exit(1);
+      }
     });
 }
 
@@ -30,12 +39,14 @@ export async function renderFile(file: string, format: string, options: RenderOp
 
   for (const item of formats) {
     if (item === "png") {
-      const png = await diagra.toPNG(source, options);
+      const png = await diagra.toPNGFromSVG(result.svg, options);
       await writeFile(`${base}.png`, png);
+      console.log(`Wrote ${base}.png`);
       continue;
     }
     if (textFormats.has(item)) {
       await writeFile(`${base}.${item}`, result[item as "svg" | "html" | "drawio" | "mmd"], "utf8");
+      console.log(`Wrote ${base}.${item}`);
     }
   }
 }

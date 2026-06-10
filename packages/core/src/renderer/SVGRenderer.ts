@@ -43,7 +43,7 @@ ${nodes}
     const maxX = Math.max(...ast.nodes.map((node) => node.x + node.width), 320) + padding;
     const maxY = Math.max(...ast.nodes.map((node) => node.y + node.height), 220) + padding;
     const rowCount = new Set(ast.nodes.map((node) => node.y)).size;
-    const requiredWidth = Math.max(800, 980, ast.nodes.length * 140, maxX);
+    const requiredWidth = Math.max(980, ast.nodes.length * 140, maxX);
     const requiredHeight = Math.max(400, 260, rowCount * 160, maxY);
     return {
       width: Math.max(options.width ?? 0, requiredWidth),
