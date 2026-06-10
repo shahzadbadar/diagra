@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2632" height="960" viewBox="0 0 2632 960" role="img">
+<style>
+:root {
+  --bg: #0F172A;
+  --node-bg: #1E293B;
+  --node-border: #334155;
+  --node-text: #F1F5F9;
+  --edge-color: #475569;
+  --edge-label: #CBD5E1;
+  --accent: #818CF8;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="context-stroke"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+
+<g transform="translate(0, 0)">
+<g id="subgraph-region" class="diagra-subgraph">
+  <rect x="1210" y="8" width="1382" height="774" rx="8" fill="#0F172A" opacity="0.18" stroke="#64748B" stroke-width="1.2" stroke-dasharray="8 6"/>
+  <text x="1226" y="34" font-family="var(--font)" font-size="12" font-weight="700" fill="#CBD5E1">us-east-1 Region</text>
+</g>
+<g id="subgraph-shared" class="diagra-subgraph">
+  <rect x="2010" y="140" width="582" height="642" rx="8" fill="#7C2D12" opacity="0.18" stroke="#FB923C" stroke-width="1.2" stroke-dasharray="8 6"/>
+  <text x="2026" y="166" font-family="var(--font)" font-size="12" font-weight="700" fill="#FFEDD5">Shared Data and Operations</text>
+</g>
+<g id="subgraph-azB" class="diagra-subgraph">
+  <rect x="1610" y="288" width="642" height="310" rx="8" fill="#166534" opacity="0.18" stroke="#4ADE80" stroke-width="1.2" stroke-dasharray="8 6"/>
+  <text x="1626" y="314" font-family="var(--font)" font-size="12" font-weight="700" fill="#DCFCE7">Availability Zone B</text>
+</g>
+<g id="subgraph-azA" class="diagra-subgraph">
+  <rect x="1610" y="8" width="642" height="294" rx="8" fill="#1D4ED8" opacity="0.18" stroke="#60A5FA" stroke-width="1.2" stroke-dasharray="8 6"/>
+  <text x="1626" y="34" font-family="var(--font)" font-size="12" font-weight="700" fill="#DBEAFE">Availability Zone A</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-1" class="diagra-edge" d="M 160 306 L 440 306" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="257" y="284" width="86" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="300" y="294" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">DNS Lookup</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-2" class="diagra-edge" d="M 560 306 L 840 306" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="656.25" y="316" width="100" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="706.25" y="326" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Resolve Edge</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-3" class="diagra-edge" d="M 985 306 C 1099.75 306, 1125.25 315, 1240 315" stroke="#38BDF8" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1081.25" y="336.5" width="100" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1131.25" y="346.5" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="#E0F2FE">HTTPS Origin</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-4" class="diagra-edge" d="M 1460 315 C 1541 315, 1559 232, 1640 232" stroke="#60A5FA" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1476" y="251.5" width="114" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1533" y="261.5" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="#DBEAFE">Zone A Traffic</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-5" class="diagra-edge" d="M 1460 315 C 1541 315, 1559 380, 1640 380" stroke="#4ADE80" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1476" y="357.5" width="114" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1533" y="367.5" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="#DCFCE7">Zone B Traffic</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-6" class="diagra-edge" d="M 1792 232 C 1903.6 232, 1928.4 84, 2040 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1866.25" y="136" width="107" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1919.75" y="146" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Schedule Pods</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-7" class="diagra-edge" d="M 1792 232 L 2040 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1870" y="210" width="107" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1923.5" y="220" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Schedule Pods</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-8" class="diagra-edge" d="M 1792 380 L 2040 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1866.25" y="390" width="107" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1919.75" y="400" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Schedule Pods</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-9" class="diagra-edge" d="M 1792 380 C 1903.6 380, 1928.4 528, 2040 528" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="1870" y="432" width="107" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="1923.5" y="442" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Schedule Pods</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-10" class="diagra-edge" d="M 2207 84 C 2311.85 84, 2335.15 232, 2440 232" stroke="#FBBF24" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2254.75" y="168" width="114" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2311.75" y="178" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="#FEF3C7">Publish Orders</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-11" class="diagra-edge" d="M 2207 380 C 2311.85 380, 2335.15 232, 2440 232" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2254.75" y="412" width="114" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2311.75" y="422" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Publish Orders</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-12" class="diagra-edge" d="M 2222 232 C 2320.1 232, 2341.9 380, 2440 380" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2266" y="460" width="100" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2316" y="470" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Read / Write</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-13" class="diagra-edge" d="M 2222 528 C 2320.1 528, 2341.9 380, 2440 380" stroke="#F87171" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+  <rect x="2266" y="480" width="100" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2316" y="490" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="#FEE2E2">Read / Write</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-14" class="diagra-edge" d="M 2123.5 128 C 2171.5 128, 2052 668, 2100 668" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="2079.25" y="584" width="65" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2111.75" y="594" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Metrics</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-15" class="diagra-edge" d="M 2123.5 424 C 2171.5 424, 2052 668, 2100 668" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="2079.25" y="604" width="65" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2111.75" y="614" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Metrics</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-16" class="diagra-edge" d="M 2131 276 C 2179 276, 2052 668, 2100 668" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="2089.5" y="626" width="52" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2115.5" y="636" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Logs</text>
+</g>
+<g class="diagra-edge-label">
+  <path id="edge-17" class="diagra-edge" d="M 2131 572 C 2179 572, 2052 668, 2100 668" stroke="var(--edge-color)" stroke-width="1" fill="none" marker-end="url(#arrow)" stroke-dasharray="6 5" opacity="0.4"/>
+  <rect x="2089.5" y="646" width="52" height="16" rx="2" fill="var(--bg)" opacity="0.85"/>
+  <text x="2115.5" y="656" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">Logs</text>
+</g>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.4s" repeatCount="indefinite">
+    <mpath href="#edge-3"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.6000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-4"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.8s" repeatCount="indefinite">
+    <mpath href="#edge-5"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1s" repeatCount="indefinite">
+    <mpath href="#edge-6"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.2000000000000002s" repeatCount="indefinite">
+    <mpath href="#edge-7"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.4000000000000001s" repeatCount="indefinite">
+    <mpath href="#edge-8"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.6s" repeatCount="indefinite">
+    <mpath href="#edge-9"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="1.8s" repeatCount="indefinite">
+    <mpath href="#edge-10"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2s" repeatCount="indefinite">
+    <mpath href="#edge-11"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.2s" repeatCount="indefinite">
+    <mpath href="#edge-12"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.4000000000000004s" repeatCount="indefinite">
+    <mpath href="#edge-13"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.6s" repeatCount="indefinite">
+    <mpath href="#edge-14"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="2.8000000000000003s" repeatCount="indefinite">
+    <mpath href="#edge-15"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="3s" repeatCount="indefinite">
+    <mpath href="#edge-16"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="3.2s" repeatCount="indefinite">
+    <mpath href="#edge-17"/>
+  </animateMotion>
+</circle>
+<g id="node-Users" class="diagra-node" data-icon="generic-browser">
+  <rect x="40" y="262" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="274" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="100" y="330" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Customers</text>
+</g>
+<g id="node-Route53" class="diagra-node" data-icon="aws-route53">
+  <rect x="440" y="262" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="484" y="274" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon Route 53">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <circle cx="10" cy="11" r="3" fill="#ffb647"/><circle cx="22" cy="11" r="3" fill="#ffb647"/><circle cx="16" cy="22" r="3" fill="#ffb647"/><path d="M12.5 12.5 15 19M19.5 12.5 17 19M13 11h6" stroke="#FFFFFF" stroke-width="1.3"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">R53</text>
+</svg>
+  <text x="500" y="330" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Route53 DNS</text>
+</g>
+<g id="node-CloudFront" class="diagra-node" data-icon="aws-cloudfront">
+  <rect x="840" y="262" width="145" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="896.5" y="274" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon CloudFront">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <circle cx="16" cy="16" r="8.5" fill="#ffb647" opacity="0.9"/><path d="M8 16h16M16 8c2 2.4 3 5 3 8s-1 5.6-3 8M16 8c-2 2.4-3 5-3 8s1 5.6 3 8" stroke="#FFFFFF" stroke-width="1.1" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CF</text>
+</svg>
+  <text x="912.5" y="330" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">CloudFront Edge</text>
+</g>
+<g id="node-ALB" class="diagra-node" data-icon="aws-elb">
+  <rect x="1240" y="262" width="220" height="106" rx="8" fill="#075985" stroke="#38BDF8"/>
+  <svg x="1334" y="274" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Elastic Load Balancing">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M7 12h18v8H7z" fill="#ffb647" opacity="0.95"/><path d="M10 16h12M18 12l4 4-4 4" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">ELB</text>
+</svg>
+  <text text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="#F0F9FF">
+  <tspan x="1350" y="324">Application Load</tspan>
+  <tspan x="1350" dy="18">Balancer</tspan>
+</text>
+</g>
+<g id="node-EksA" class="diagra-node" data-icon="aws-eks">
+  <rect x="1640" y="188" width="152" height="88" rx="8" fill="#4338CA" stroke="#818CF8"/>
+  <svg x="1700" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon EKS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M8 10h16v12H8z" fill="#ffb647" opacity="0.95"/><path d="M11 13h3M16 13h3M21 13h2M11 17h3M16 17h3M21 17h2" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">EKS</text>
+</svg>
+  <text x="1716" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="#EEF2FF">EKS Node Group A</text>
+</g>
+<g id="node-OrdersA" class="diagra-node" data-icon="generic-server">
+  <rect x="2040" y="40" width="167" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2107.5" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2123.5" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Orders Service Pod</text>
+</g>
+<g id="node-PaymentsA" class="diagra-node" data-icon="generic-server">
+  <rect x="2040" y="188" width="182" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2115" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2131" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Payments Service Pod</text>
+</g>
+<g id="node-EksB" class="diagra-node" data-icon="aws-eks">
+  <rect x="1640" y="336" width="152" height="88" rx="8" fill="#14532D" stroke="#22C55E"/>
+  <svg x="1700" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon EKS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M8 10h16v12H8z" fill="#ffb647" opacity="0.95"/><path d="M11 13h3M16 13h3M21 13h2M11 17h3M16 17h3M21 17h2" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">EKS</text>
+</svg>
+  <text x="1716" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="#F0FDF4">EKS Node Group B</text>
+</g>
+<g id="node-OrdersB" class="diagra-node" data-icon="generic-server">
+  <rect x="2040" y="336" width="167" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2107.5" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2123.5" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Orders Service Pod</text>
+</g>
+<g id="node-PaymentsB" class="diagra-node" data-icon="generic-server">
+  <rect x="2040" y="484" width="182" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2115" y="496" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="2131" y="552" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Payments Service Pod</text>
+</g>
+<g id="node-SQS" class="diagra-node" data-icon="aws-sqs">
+  <rect x="2440" y="188" width="120" height="88" rx="8" fill="#92400E" stroke="#FBBF24"/>
+  <svg x="2484" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon SQS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="4.5" rx="2" fill="#ffb647"/><rect x="8" y="14" width="16" height="4.5" rx="2" fill="#ffb647"/><rect x="8" y="20" width="16" height="4.5" rx="2" fill="#ffb647"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">SQS</text>
+</svg>
+  <text x="2500" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="#FFFBEB">Order Queue</text>
+</g>
+<g id="node-RDS" class="diagra-node" data-icon="aws-rds">
+  <rect x="2440" y="336" width="122" height="88" rx="8" fill="#991B1B" stroke="#F87171"/>
+  <svg x="2485" y="348" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon RDS">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#ffb647"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#ffb647"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">RDS</text>
+</svg>
+  <text x="2501" y="404" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="#FEF2F2">Multi-AZ RDS</text>
+</g>
+<g id="node-CloudWatch" class="diagra-node" data-icon="aws-cloudwatch">
+  <rect x="2040" y="668" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="2084" y="680" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon CloudWatch">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M16 6.8 25.2 16 16 25.2 6.8 16 16 6.8Z" fill="#ffb647" opacity="0.95"/><path d="m13 11 6 5-6 5" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">CW</text>
+</svg>
+  <text x="2100" y="736" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">CloudWatch</text>
+</g>
+</g>
+</svg>

@@ -44,6 +44,32 @@ describe("Diagra", () => {
     ]);
   });
 
+  it("applies Mermaid style and linkStyle colors to nodes and edges", async () => {
+    const result = await new Diagra().render(`flowchart LR
+  A[Build] -->|Deploy| B[Production]
+  style A fill:#14532d,stroke:#22c55e,color:#f0fdf4
+  linkStyle 0 stroke:#38bdf8,color:#e0f2fe`);
+
+    expect(result.svg).toContain(`fill="#14532d" stroke="#22c55e"`);
+    expect(result.svg).toContain(`fill="#f0fdf4">Build</text>`);
+    expect(result.svg).toContain(`stroke="#38bdf8"`);
+    expect(result.svg).toContain(`fill="#e0f2fe">Deploy</text>`);
+  });
+
+  it("parses and renders Mermaid subgraphs as grouped containers", async () => {
+    const result = await new Diagra().render(`flowchart LR
+  subgraph app[Application]
+    A[API] --> B[Worker]
+  end
+  B --> C[Database]
+  style app fill:#0f172a,stroke:#38bdf8,color:#e0f2fe`);
+
+    expect(result.svg).toContain(`id="subgraph-app"`);
+    expect(result.svg).toContain(`Application</text>`);
+    expect(result.svg).toContain(`stroke="#38bdf8" stroke-width="1.2"`);
+    expect(result.svg.indexOf(`id="subgraph-app"`)).toBeLessThan(result.svg.indexOf(`id="node-A"`));
+  });
+
   it("lays out branches across vertical lanes", async () => {
     const parsed = await new DiagramParser().parse(`flowchart LR
   A[Source] --> B[Worker]
@@ -55,6 +81,33 @@ describe("Diagra", () => {
 
     expect(new Set(parsed.ast.nodes.map((node) => node.y)).size).toBeGreaterThan(1);
     expect(parsed.ast.nodes.find((node) => node.id === "G")?.y).toBeGreaterThan(parsed.ast.nodes.find((node) => node.id === "A")?.y ?? 0);
+  });
+
+  it("lays out top-down branches across columns", async () => {
+    const parsed = await new DiagramParser().parse(`flowchart TD
+  Entry[Entry] --> Split[Split]
+  Split --> A1[Region A]
+  Split --> B1[Region B]
+  A1 --> A2[Database A]
+  B1 --> B2[Database B]`);
+
+    const nodes = new Map(parsed.ast.nodes.map((node) => [node.id, node]));
+    expect(nodes.get("A1")?.y).toBe(nodes.get("B1")?.y);
+    expect(nodes.get("A1")?.x).not.toBe(nodes.get("B1")?.x);
+  });
+
+  it("keeps replication cross-links from pushing normal top-down flow into later ranks", async () => {
+    const parsed = await new DiagramParser().parse(`flowchart TD
+  Router[Router] --> ServiceA[Service A]
+  Router --> ServiceB[Service B]
+  ServiceA --> DbA[Database A]
+  ServiceB --> DbB[Database B]
+  DbA -->|Replicate| Global[Global Table]
+  Global -->|Replicate| DbB`);
+
+    const nodes = new Map(parsed.ast.nodes.map((node) => [node.id, node]));
+    expect(nodes.get("DbB")?.y).toBe(nodes.get("DbA")?.y);
+    expect(nodes.get("Global")?.y).toBeGreaterThan(nodes.get("DbA")?.y ?? 0);
   });
 
   it("keeps edge labels readable and observability nodes in a bottom row", async () => {

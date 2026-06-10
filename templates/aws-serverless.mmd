@@ -1,0 +1,11 @@
+flowchart LR
+  user[User]
+  apigw[API Gateway]
+  lambda[Lambda]
+  dynamo[DynamoDB]
+  s3[S3]
+
+  user --> apigw
+  apigw --> lambda
+  lambda --> dynamo
+  lambda --> s3

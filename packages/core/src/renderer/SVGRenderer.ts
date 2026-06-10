@@ -18,6 +18,7 @@ export class SVGRenderer {
     const titleOffset = directives.title || directives.subtitle ? 70 : 0;
     const dimensions = this.dimensions(ast, options, titleOffset);
     const nodesById = new Map(ast.nodes.map((node) => [node.id, node]));
+    const subgraphs = this.renderSubgraphs(ast);
     const edges = this.edgeRenderer.renderAll(ast.edges, nodesById);
     const nodes = ast.nodes.map((node) => this.nodeRenderer.render(node, icons.get(node.id))).join("\n");
     const animations = this.animationRenderer.render(ast.edges, nodesById, options.animate ?? directives.animate);
@@ -31,17 +32,30 @@ ${css}
 </style>
 <defs>
   <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+    <path d="M0,0 L0,6 L9,3 z" fill="context-stroke"/>
   </marker>
 </defs>
 <rect width="100%" height="100%" fill="${options.transparent ? "none" : "var(--bg)"}"/>
 ${titleElements}
 <g transform="translate(0, ${titleOffset})">
+${subgraphs}
 ${edges}
 ${animations}
 ${nodes}
 </g>
 </svg>`;
+  }
+
+  private renderSubgraphs(ast: DiagramAst): string {
+    return ast.subgraphs.map((subgraph) => {
+      const fill = subgraph.style?.fill ?? "var(--node-bg)";
+      const stroke = subgraph.style?.stroke ?? "var(--node-border)";
+      const textColor = subgraph.style?.color ?? "var(--edge-label)";
+      return `<g id="subgraph-${escapeXml(subgraph.id)}" class="diagra-subgraph">
+  <rect x="${subgraph.x}" y="${subgraph.y}" width="${subgraph.width}" height="${subgraph.height}" rx="8" fill="${fill}" opacity="0.18" stroke="${stroke}" stroke-width="1.2" stroke-dasharray="8 6"/>
+  <text x="${subgraph.x + 16}" y="${subgraph.y + 26}" font-family="var(--font)" font-size="12" font-weight="700" fill="${textColor}">${escapeXml(subgraph.label)}</text>
+</g>`;
+    }).join("\n");
   }
 
   private renderTitle(directives: DiagraDirectives, canvasWidth: number): string {
@@ -59,10 +73,11 @@ ${nodes}
 
   private dimensions(ast: DiagramAst, options: RenderOptions, titleOffset: number): { width: number; height: number } {
     const padding = 40;
-    const maxX = Math.max(...ast.nodes.map((node) => node.x + node.width), 320) + padding;
-    const maxY = Math.max(...ast.nodes.map((node) => node.y + node.height), 220) + padding;
+    const bounds = [...ast.nodes, ...ast.subgraphs];
+    const maxX = Math.max(...bounds.map((item) => item.x + item.width), 320) + padding;
+    const maxY = Math.max(...bounds.map((item) => item.y + item.height), 220) + padding;
     const rowCount = new Set(ast.nodes.map((node) => node.y)).size;
-    const requiredWidth = Math.max(980, ast.nodes.length * 140, maxX);
+    const requiredWidth = Math.max(980, maxX);
     const requiredHeight = Math.max(400, 260, rowCount * 160, maxY) + titleOffset;
     return {
       width: Math.max(options.width ?? 0, requiredWidth),
