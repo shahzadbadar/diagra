@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="400" viewBox="0 0 980 400" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F8F9FA;
+  --node-border: #E2E8F0;
+  --node-text: #1A202C;
+  --edge-color: #94A3B8;
+  --edge-label: #64748B;
+  --accent: #6366F1;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+
+<g transform="translate(0, 0)">
+<path id="edge-1" class="diagra-edge" d="M 160 84 L 352 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 472 84 L 664 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0s" repeatCount="indefinite">
+    <mpath href="#edge-1"/>
+  </animateMotion>
+</circle>
+<circle r="4" fill="var(--accent)" opacity="0.9">
+  <animateMotion dur="1.5s" begin="0.2s" repeatCount="indefinite">
+    <mpath href="#edge-2"/>
+  </animateMotion>
+</circle>
+<g id="node-A" class="diagra-node" data-icon="aws-apigateway">
+  <rect x="40" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon API Gateway">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <path d="M7.5 11h17v10h-17z" fill="#ffb647" opacity="0.9"/><path d="M11 16h10" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" fill="#FFFFFF">API</text>
+</svg>
+  <text x="100" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API Gateway</text>
+</g>
+<g id="node-B" class="diagra-node" data-icon="aws-lambda">
+  <rect x="352" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="396" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="AWS Lambda">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <rect x="8" y="8" width="16" height="16" rx="3" fill="#ffb647" opacity="0.95"/><path d="M11 6v4M16 6v4M21 6v4M11 22v4M16 22v4M21 22v4" stroke="#FFFFFF" stroke-width="1.1"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">λ</text>
+</svg>
+  <text x="412" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Lambda</text>
+</g>
+<g id="node-C" class="diagra-node" data-icon="aws-dynamodb">
+  <rect x="664" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="708" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Amazon DynamoDB">
+  <path d="M16 2.8 27.6 9.4v13.2L16 29.2 4.4 22.6V9.4L16 2.8Z" fill="#FF9900"/>
+  <ellipse cx="16" cy="9" rx="8.5" ry="3.4" fill="#ffb647"/><path d="M7.5 9v12c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4V9" fill="#ffb647"/><path d="M7.5 15c0 1.9 3.8 3.4 8.5 3.4s8.5-1.5 8.5-3.4" stroke="#FFFFFF" stroke-width="1.2" fill="none"/>
+  <text x="16" y="20.4" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">DB</text>
+</svg>
+  <text x="724" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">DynamoDB</text>
+</g>
+</g>
+</svg>

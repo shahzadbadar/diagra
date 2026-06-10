@@ -8,6 +8,7 @@
 - `aws/05-ml-platform.diagra` - ML training and inference path using S3, SageMaker, Lambda, API Gateway, and CloudWatch.
 - `aws/06-security-architecture.diagra` - Security architecture with WAF, CloudFront, API Gateway, Cognito, IAM, KMS, Secrets Manager, and CloudWatch.
 - `aws/07-multi-region.diagra` - Active-active multi-region routing with Route53 and DynamoDB global table replication.
+- `aws/08-region-az-eks.diagra` - EKS microservices across two Availability Zones inside a differently colored region container.
 
 ## Azure
 - `azure/01-web-application.diagra` - Azure web app with Front Door, App Service, Functions, Cosmos DB, Blob Storage, and Application Insights.
@@ -36,3 +37,4 @@
 - `general/03-cicd-pipeline.diagra` - CI/CD pipeline from git push to production monitoring.
 - `general/04-system-design.diagra` - Classic scalable system design with CDN, load balancer, web tier, cache, database, replicas, and object storage.
 - `general/05-auth-flow.diagra` - OAuth/JWT authentication flow rendered as a flowchart.
+- `general/06-subgraph-platform.diagra` - Platform diagram with nested application, data, and observability subgraphs.

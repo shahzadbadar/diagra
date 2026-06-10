@@ -31,3 +31,27 @@ flowchart TD
   Staging -->|Validate| Integration
   Integration -->|Promote| Production
   Production -->|Metrics| Monitoring
+
+  style Developer fill:#0F766E,stroke:#2DD4BF,color:#ECFEFF
+  style GitHub fill:#1E293B,stroke:#94A3B8,color:#F8FAFC
+  style Runner fill:#1D4ED8,stroke:#60A5FA,color:#EFF6FF
+  style Build fill:#4338CA,stroke:#818CF8,color:#EEF2FF
+  style Tests fill:#166534,stroke:#4ADE80,color:#F0FDF4
+  style Security fill:#92400E,stroke:#FBBF24,color:#FFFBEB
+  style Docker fill:#075985,stroke:#38BDF8,color:#F0F9FF
+  style Registry fill:#6D28D9,stroke:#C084FC,color:#FAF5FF
+  style Staging fill:#7C2D12,stroke:#FB923C,color:#FFF7ED
+  style Integration fill:#365314,stroke:#A3E635,color:#F7FEE7
+  style Production fill:#991B1B,stroke:#F87171,color:#FEF2F2
+  style Monitoring fill:#312E81,stroke:#A5B4FC,color:#EEF2FF
+  linkStyle 0 stroke:#2DD4BF,color:#CCFBF1
+  linkStyle 1 stroke:#60A5FA,color:#DBEAFE
+  linkStyle 2 stroke:#818CF8,color:#E0E7FF
+  linkStyle 3 stroke:#4ADE80,color:#DCFCE7
+  linkStyle 4 stroke:#FBBF24,color:#FEF3C7
+  linkStyle 5 stroke:#38BDF8,color:#E0F2FE
+  linkStyle 6 stroke:#C084FC,color:#F3E8FF
+  linkStyle 7 stroke:#FB923C,color:#FFEDD5
+  linkStyle 8 stroke:#A3E635,color:#ECFCCB
+  linkStyle 9 stroke:#F87171,color:#FEE2E2
+  linkStyle 10 stroke:#A5B4FC,color:#E0E7FF

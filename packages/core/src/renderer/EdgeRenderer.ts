@@ -21,7 +21,9 @@ export class EdgeRenderer {
     const opacity = edge.dashed ? ` opacity="0.4"` : "";
     const strokeWidth = edge.dashed ? 1 : 1.7;
     const pathData = this.pathData(start, end);
-    const path = `<path id="${edge.id}" class="diagra-edge" d="${pathData}" stroke="var(--edge-color)" stroke-width="${strokeWidth}" fill="none" marker-end="url(#arrow)"${dash}${opacity}/>`;
+    const stroke = edge.style?.stroke ?? "var(--edge-color)";
+    const labelColor = edge.style?.color ?? "var(--edge-label)";
+    const path = `<path id="${edge.id}" class="diagra-edge" d="${pathData}" stroke="${stroke}" stroke-width="${strokeWidth}" fill="none" marker-end="url(#arrow)"${dash}${opacity}/>`;
     if (!edge.label) return path;
 
     const midX = (from.x + from.width / 2 + to.x + to.width / 2) / 2;
@@ -32,7 +34,7 @@ export class EdgeRenderer {
     return `<g class="diagra-edge-label">
   ${path}
   <rect x="${midX - labelWidth / 2 - 4}" y="${labelY - 10}" width="${labelWidth + 8}" height="${labelHeight}" rx="2" fill="var(--bg)" opacity="0.85"/>
-  <text x="${midX}" y="${labelY}" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="var(--edge-label)">${escapeXml(edge.label)}</text>
+  <text x="${midX}" y="${labelY}" text-anchor="middle" font-family="var(--font)" font-size="10" font-weight="600" fill="${labelColor}">${escapeXml(edge.label)}</text>
 </g>`;
   }
 

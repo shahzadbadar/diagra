@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="400" viewBox="0 0 980 400" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F8F9FA;
+  --node-border: #E2E8F0;
+  --node-text: #1A202C;
+  --edge-color: #94A3B8;
+  --edge-label: #64748B;
+  --accent: #6366F1;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+
+<g transform="translate(0, 0)">
+<path id="edge-1" class="diagra-edge" d="M 160 84 L 352 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 472 84 L 664 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+
+<g id="node-browser" class="diagra-node" data-icon="generic-browser">
+  <rect x="40" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="100" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Browser</text>
+</g>
+<g id="node-api" class="diagra-node" data-icon="generic-api">
+  <rect x="352" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="396" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="412" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API</text>
+</g>
+<g id="node-db" class="diagra-node" data-icon="generic-database">
+  <rect x="664" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="708" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="724" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Database</text>
+</g>
+</g>
+</svg>

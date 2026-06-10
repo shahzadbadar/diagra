@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1148" height="480" viewBox="0 0 1148 480" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="1136" height="480" viewBox="0 0 1136 480" role="img">
 <style>
 :root {
   --bg: #FFFFFF;
@@ -19,39 +19,42 @@
   </marker>
 </defs>
 <rect width="100%" height="100%" fill="var(--bg)"/>
-<path id="edge-1" class="diagra-edge" d="M 172 84 C 253 84, 271 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
-<path id="edge-2" class="diagra-edge" d="M 172 232 C 253 232, 271 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
-<path id="edge-3" class="diagra-edge" d="M 484 158 L 664 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
-<path id="edge-4" class="diagra-edge" d="M 796 158 L 976 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+
+<g transform="translate(0, 0)">
+<path id="edge-1" class="diagra-edge" d="M 160 84 C 246.4 84, 265.6 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 160 232 C 246.4 232, 265.6 158, 352 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-3" class="diagra-edge" d="M 472 158 L 664 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-4" class="diagra-edge" d="M 784 158 L 976 158" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
 
 <g id="node-mobile" class="diagra-node" data-icon="generic-mobile">
-  <rect x="40" y="40" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
-  <svg x="90" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="mobile"><rect x="10" y="3" width="12" height="26" rx="3" fill="#64748B"/><circle cx="16" cy="25" r="1.2" fill="#fff"/></svg>
+  <rect x="40" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="mobile"><rect x="10" y="3" width="12" height="26" rx="3" fill="#64748B"/><circle cx="16" cy="25" r="1.2" fill="#fff"/></svg>
 
-  <text x="106" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Mobile</text>
+  <text x="100" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Mobile</text>
 </g>
 <g id="node-browser" class="diagra-node" data-icon="generic-browser">
-  <rect x="40" y="188" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
-  <svg x="90" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+  <rect x="40" y="188" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="200" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
 
-  <text x="106" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Browser</text>
+  <text x="100" y="256" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Browser</text>
 </g>
 <g id="node-api" class="diagra-node" data-icon="generic-api">
-  <rect x="352" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
-  <svg x="402" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+  <rect x="352" y="114" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="396" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
 
-  <text x="418" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API</text>
+  <text x="412" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API</text>
 </g>
 <g id="node-queue" class="diagra-node" data-icon="generic-queue">
-  <rect x="664" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
-  <svg x="714" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="queue"><rect x="6" y="7" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="14" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="21" width="20" height="5" rx="2" fill="#64748B"/></svg>
+  <rect x="664" y="114" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="708" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="queue"><rect x="6" y="7" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="14" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="21" width="20" height="5" rx="2" fill="#64748B"/></svg>
 
-  <text x="730" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Queue</text>
+  <text x="724" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Queue</text>
 </g>
 <g id="node-db" class="diagra-node" data-icon="generic-database">
-  <rect x="976" y="114" width="132" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
-  <svg x="1026" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+  <rect x="976" y="114" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1020" y="126" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
 
-  <text x="1042" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Database</text>
+  <text x="1036" y="182" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Database</text>
+</g>
 </g>
 </svg>

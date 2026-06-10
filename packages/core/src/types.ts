@@ -23,6 +23,7 @@ export interface DiagramNode {
   id: string;
   label: string;
   classes: string[];
+  style?: DiagramStyle;
   x: number;
   y: number;
   width: number;
@@ -35,6 +36,25 @@ export interface DiagramEdge {
   to: string;
   label?: string;
   dashed?: boolean;
+  style?: DiagramStyle;
+}
+
+export interface DiagramStyle {
+  fill?: string;
+  stroke?: string;
+  color?: string;
+}
+
+export interface DiagramSubgraph {
+  id: string;
+  label: string;
+  nodeIds: string[];
+  parentId?: string;
+  style?: DiagramStyle;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 export interface DiagramAst {
@@ -42,6 +62,7 @@ export interface DiagramAst {
   direction: "TB" | "TD" | "BT" | "LR" | "RL";
   nodes: DiagramNode[];
   edges: DiagramEdge[];
+  subgraphs: DiagramSubgraph[];
 }
 
 export interface ParsedDiagram {

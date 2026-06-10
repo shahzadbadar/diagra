@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1448" height="400" viewBox="0 0 1448 400" role="img">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --node-bg: #F5F5F5;
+  --node-border: #D4D4D4;
+  --node-text: #171717;
+  --edge-color: #737373;
+  --edge-label: #525252;
+  --accent: #404040;
+  --font: 'Inter', sans-serif;
+}
+.diagra-node { filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.10)); }
+.diagra-edge { stroke-linecap: round; }
+</style>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="var(--edge-color)"/>
+  </marker>
+</defs>
+<rect width="100%" height="100%" fill="var(--bg)"/>
+
+<g transform="translate(0, 0)">
+<path id="edge-1" class="diagra-edge" d="M 160 84 L 352 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-2" class="diagra-edge" d="M 472 84 L 664 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-3" class="diagra-edge" d="M 784 84 L 976 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+<path id="edge-4" class="diagra-edge" d="M 1096 84 L 1288 84" stroke="var(--edge-color)" stroke-width="1.7" fill="none" marker-end="url(#arrow)"/>
+
+<g id="node-web" class="diagra-node" data-icon="generic-browser">
+  <rect x="40" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="84" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="browser"><rect x="4" y="6" width="24" height="20" rx="3" fill="#64748B"/><path d="M4 12h24" stroke="#fff" stroke-width="2"/><circle cx="9" cy="9" r="1" fill="#fff"/><circle cx="13" cy="9" r="1" fill="#fff"/></svg>
+
+  <text x="100" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Web App</text>
+</g>
+<g id="node-api" class="diagra-node" data-icon="generic-api">
+  <rect x="352" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="396" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="api"><rect x="4" y="7" width="24" height="18" rx="4" fill="#64748B"/><text x="16" y="20" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#fff">API</text></svg>
+
+  <text x="412" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">API Service</text>
+</g>
+<g id="node-queue" class="diagra-node" data-icon="generic-queue">
+  <rect x="664" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="708" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="queue"><rect x="6" y="7" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="14" width="20" height="5" rx="2" fill="#64748B"/><rect x="6" y="21" width="20" height="5" rx="2" fill="#64748B"/></svg>
+
+  <text x="724" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Work Queue</text>
+</g>
+<g id="node-worker" class="diagra-node" data-icon="generic-server">
+  <rect x="976" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1020" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="server"><rect x="5" y="6" width="22" height="20" rx="3" fill="#64748B"/><path d="M9 12h14M9 18h14" stroke="#fff" stroke-width="2"/><circle cx="11" cy="23" r="1.5" fill="#fff"/></svg>
+
+  <text x="1036" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Worker</text>
+</g>
+<g id="node-data" class="diagra-node" data-icon="generic-database">
+  <rect x="1288" y="40" width="120" height="88" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <svg x="1332" y="52" width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="database"><ellipse cx="16" cy="8" rx="10" ry="4" fill="#64748B"/><path d="M6 8v14c0 2.2 4.5 4 10 4s10-1.8 10-4V8" fill="#64748B"/><path d="M6 15c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#fff" stroke-width="1.8" fill="none"/></svg>
+
+  <text x="1348" y="108" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">Data Store</text>
+</g>
+</g>
+</svg>

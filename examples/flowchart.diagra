@@ -1,0 +1,7 @@
+%%diagra:theme light
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  A[API Gateway]:::aws-apigateway --> B[Lambda]:::aws-lambda --> C[DynamoDB]:::aws-dynamodb

@@ -7,6 +7,9 @@ export class NodeRenderer {
     const twoLine = lines.length > 1;
     const iconX = node.x + node.width / 2 - 16;
     const iconY = node.y + 12;
+    const fill = node.style?.fill ?? "var(--node-bg)";
+    const stroke = node.style?.stroke ?? "var(--node-border)";
+    const textColor = node.style?.color ?? "var(--node-text)";
     const iconBlock = icon
       ? this.renderIcon(this.sanitizeIconSvg(icon), iconX, iconY)
       : `<circle cx="${node.x + node.width / 2}" cy="${node.y + 28}" r="15" fill="var(--accent)" opacity="0.18"/>`;
@@ -14,16 +17,16 @@ export class NodeRenderer {
     let textEl: string;
     if (twoLine) {
       const baseY = node.y + 62;
-      textEl = `<text text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">
+      textEl = `<text text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="${textColor}">
   <tspan x="${node.x + node.width / 2}" y="${baseY}">${escapeXml(lines[0])}</tspan>
   <tspan x="${node.x + node.width / 2}" dy="18">${escapeXml(lines[1])}</tspan>
 </text>`;
     } else {
-      textEl = `<text x="${node.x + node.width / 2}" y="${node.y + 68}" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="var(--node-text)">${escapeXml(lines[0])}</text>`;
+      textEl = `<text x="${node.x + node.width / 2}" y="${node.y + 68}" text-anchor="middle" font-family="var(--font)" font-size="12" font-weight="600" fill="${textColor}">${escapeXml(lines[0])}</text>`;
     }
 
     return `<g id="node-${escapeXml(node.id)}" class="diagra-node" data-icon="${escapeXml(node.classes[0] ?? "")}">
-  <rect x="${node.x}" y="${node.y}" width="${node.width}" height="${node.height}" rx="8" fill="var(--node-bg)" stroke="var(--node-border)"/>
+  <rect x="${node.x}" y="${node.y}" width="${node.width}" height="${node.height}" rx="8" fill="${fill}" stroke="${stroke}"/>
   ${iconBlock}
   ${textEl}
 </g>`;

@@ -1,0 +1,52 @@
+%%diagra:theme dark
+%%diagra:icons generic
+%%diagra:animate flow
+%%diagra:font Inter
+
+flowchart LR
+  Users[Users]:::generic-user
+
+  subgraph platform[Production Platform]
+    subgraph app[Application Services]
+      Gateway[API Gateway]:::generic-api
+      Web[Web Service]:::generic-server
+    end
+
+    subgraph processing[Processing]
+      Queue[Job Queue]:::generic-queue
+      Worker[Background Worker]:::generic-server
+    end
+
+    subgraph data[Data Layer]
+      Database[Primary Database]:::generic-database
+      ObjectStore[Object Storage]:::generic-cloud
+    end
+
+    subgraph ops[Observability]
+      Metrics[Metrics]:::generic-server
+      Logs[Logs]:::generic-database
+    end
+  end
+
+  Users -->|HTTPS| Gateway
+  Gateway -->|Route| Web
+  Web -->|Enqueue| Queue
+  Queue -->|Process| Worker
+  Worker -->|Read / Write| Database
+  Worker -->|Store Files| ObjectStore
+  Web -.->|Emit Metrics| Metrics
+  Worker -.->|Write Logs| Logs
+
+  style platform fill:#0F172A,stroke:#64748B,color:#CBD5E1
+  style app fill:#1D4ED8,stroke:#60A5FA,color:#DBEAFE
+  style processing fill:#6D28D9,stroke:#C084FC,color:#F3E8FF
+  style data fill:#166534,stroke:#4ADE80,color:#DCFCE7
+  style ops fill:#7C2D12,stroke:#FB923C,color:#FFEDD5
+  style Gateway fill:#075985,stroke:#38BDF8,color:#F0F9FF
+  style Web fill:#4338CA,stroke:#818CF8,color:#EEF2FF
+  style Worker fill:#6D28D9,stroke:#C084FC,color:#FAF5FF
+  style Database fill:#14532D,stroke:#22C55E,color:#F0FDF4
+  linkStyle 0 stroke:#38BDF8,color:#E0F2FE
+  linkStyle 1 stroke:#818CF8,color:#E0E7FF
+  linkStyle 2 stroke:#4ADE80,color:#DCFCE7
+  linkStyle 3 stroke:#C084FC,color:#F3E8FF
