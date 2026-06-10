@@ -9,6 +9,8 @@ export interface DiagraDirectives {
   animate: AnimationName;
   font: string;
   accent?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 export interface RenderOptions extends Partial<DiagraDirectives> {
