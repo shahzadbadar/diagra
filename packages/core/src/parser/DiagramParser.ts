@@ -50,7 +50,7 @@ export class DiagramParser {
 
     const cycleNodes = this.detectCycle([...nodeMap.values()], edges);
     if (cycleNodes.length > 0) {
-      throw new Error(`Cyclic dependency detected. Nodes in cycle: ${cycleNodes.join(", ")}. Diagra requires a DAG (no cycles).`);
+      console.warn(`[diagra] Cyclic edges detected (nodes: ${cycleNodes.join(", ")}). Back-edges will be excluded from layout.`);
     }
 
     const nodes = this.layout([...nodeMap.values()], edges, direction);
@@ -176,12 +176,14 @@ export class DiagramParser {
     const primaryIncoming = this.groupEdges(primaryLayoutEdges, "to");
     const primaryOutgoing = this.groupEdges(primaryLayoutEdges, "from");
 
-    // BFS longest-path rank assignment
+    // BFS longest-path rank assignment (MAX_RANK caps cycles to prevent infinite loop)
+    const MAX_RANK = primaryNodes.length;
     const bfsQueue = primaryNodes.filter((node) => (primaryIncoming.get(node.id)?.length ?? 0) === 0).map((node) => node.id);
     let bfsIndex = 0;
     while (bfsIndex < bfsQueue.length) {
       const id = bfsQueue[bfsIndex++];
       const currentRank = rank.get(id) ?? 0;
+      if (currentRank >= MAX_RANK) continue;
       for (const edge of primaryOutgoing.get(id) ?? []) {
         const existingRank = rank.get(edge.to) ?? -1;
         if (existingRank <= currentRank) {
