@@ -33,13 +33,15 @@ export class DiagramParser {
 
     for (const line of lines.slice(1)) {
       if (line.startsWith("%%")) continue;
-      const edge = this.parseEdge(line);
-      if (edge) {
-        const left = this.parseEndpoint(edge.left);
-        const right = this.parseEndpoint(edge.right);
-        this.upsertNode(nodeMap, left);
-        this.upsertNode(nodeMap, right);
-        edges.push({ id: `edge-${edges.length + 1}`, from: left.id, to: right.id, label: edge.label, dashed: edge.dashed });
+      const parsedEdges = this.parseEdges(line);
+      if (parsedEdges.length > 0) {
+        for (const edge of parsedEdges) {
+          const left = this.parseEndpoint(edge.left);
+          const right = this.parseEndpoint(edge.right);
+          this.upsertNode(nodeMap, left);
+          this.upsertNode(nodeMap, right);
+          edges.push({ id: `edge-${edges.length + 1}`, from: left.id, to: right.id, label: edge.label, dashed: edge.dashed });
+        }
       } else {
         const node = this.parseEndpoint(line);
         this.upsertNode(nodeMap, node);
@@ -88,15 +90,22 @@ export class DiagramParser {
     return { width, height };
   }
 
-  private parseEdge(raw: string): { left: string; right: string; label?: string; dashed: boolean } | undefined {
-    const edgeMatch = raw.match(/^(.*?)\s*(-\.->|-->)\s*(?:\|([^|]+)\|\s*)?(.*?)\s*;?$/);
-    if (!edgeMatch) return undefined;
-    return {
-      left: edgeMatch[1],
-      right: edgeMatch[4],
-      label: edgeMatch[3]?.trim(),
-      dashed: edgeMatch[2] === "-.->"
-    };
+  private parseEdges(raw: string): Array<{ left: string; right: string; label?: string; dashed: boolean }> {
+    const arrowPattern = /\s*(-\.->|-->)\s*(?:\|([^|]+)\|\s*)?/g;
+    const arrows = [...raw.matchAll(arrowPattern)];
+    if (arrows.length === 0) return [];
+
+    return arrows.map((arrow, index) => {
+      const nextArrow = arrows[index + 1];
+      const leftStart = index === 0 ? 0 : arrows[index - 1].index! + arrows[index - 1][0].length;
+      const rightEnd = nextArrow ? nextArrow.index! : raw.length;
+      return {
+        left: raw.slice(leftStart, arrow.index).trim(),
+        right: raw.slice(arrow.index! + arrow[0].length, rightEnd).trim().replace(/;$/, ""),
+        label: arrow[2]?.trim(),
+        dashed: arrow[1] === "-.->"
+      };
+    });
   }
 
   private parseEndpoint(raw: string): Omit<DiagramNode, "x" | "y" | "width" | "height"> {
