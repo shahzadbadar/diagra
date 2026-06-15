@@ -1,10 +1,12 @@
 import type { AnimationName, DiagramEdge, DiagramNode } from "../types";
 
+type BoxLike = Pick<DiagramNode, "x" | "y" | "width" | "height">;
+
 export class AnimationRenderer {
-  render(edges: DiagramEdge[], nodesById: Map<string, DiagramNode>, animate: AnimationName): string {
+  render(edges: DiagramEdge[], boxesById: Map<string, BoxLike>, animate: AnimationName): string {
     if (animate !== "flow") return "";
     return edges
-      .filter((edge) => this.pathLength(edge, nodesById) > 50)
+      .filter((edge) => this.pathLength(edge, boxesById) > 50)
       .map((edge, index) => `<circle r="4" fill="var(--accent)" opacity="0.9">
   <animateMotion dur="1.5s" begin="${index * 0.2}s" repeatCount="indefinite">
     <mpath href="#${edge.id}"/>
@@ -13,9 +15,9 @@ export class AnimationRenderer {
       .join("\n");
   }
 
-  private pathLength(edge: DiagramEdge, nodesById: Map<string, DiagramNode>): number {
-    const from = nodesById.get(edge.from);
-    const to = nodesById.get(edge.to);
+  private pathLength(edge: DiagramEdge, boxesById: Map<string, BoxLike>): number {
+    const from = boxesById.get(edge.from);
+    const to = boxesById.get(edge.to);
     if (!from || !to) return 0;
     const start = this.anchor(from, to);
     const end = this.anchor(to, from);
@@ -52,7 +54,7 @@ export class AnimationRenderer {
     return Math.hypot(b.x - a.x, b.y - a.y);
   }
 
-  private anchor(node: DiagramNode, other: DiagramNode): { x: number; y: number } {
+  private anchor(node: BoxLike, other: BoxLike): { x: number; y: number } {
     const cx = node.x + node.width / 2;
     const cy = node.y + node.height / 2;
     const ox = other.x + other.width / 2;

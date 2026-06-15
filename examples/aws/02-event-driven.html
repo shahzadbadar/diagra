@@ -1,3 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagra Diagram</title>
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #f8fafc; font-family: Inter, system-ui, sans-serif; }
+    body { display: grid; place-items: center; padding: 24px; }
+    svg { max-width: 100%; height: auto; }
+    .diagra-node { cursor: pointer; }
+    .diagra-node.is-active rect { stroke: var(--accent); stroke-width: 2.5; }
+  </style>
+</head>
+<body>
 <svg xmlns="http://www.w3.org/2000/svg" width="1560" height="960" viewBox="0 0 1560 960" role="img">
 <style>
 :root {
@@ -289,3 +304,10 @@
 </g>
 </g>
 </svg>
+<script>
+  document.querySelectorAll('.diagra-node').forEach((node) => {
+    node.addEventListener('click', () => node.classList.toggle('is-active'));
+  });
+</script>
+</body>
+</html>

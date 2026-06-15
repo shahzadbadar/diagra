@@ -5,6 +5,8 @@ type MermaidParserModule = {
   parse?: (diagramType: string, text: string) => unknown | Promise<unknown>;
 };
 
+type BoxLike = { x: number; y: number; width: number; height: number };
+
 export class DiagramParser {
   private readonly directiveParser = new DirectiveParser();
 
@@ -32,6 +34,7 @@ export class DiagramParser {
     const nodeStyles = new Map<string, DiagramStyle>();
     const edgeStyles = new Map<number | "default", DiagramStyle>();
     const subgraphMap = new Map<string, Omit<DiagramSubgraph, "x" | "y" | "width" | "height"> & { nodeIds: string[] }>();
+    const nodeParentMap = new Map<string, string | undefined>();
     const subgraphStack: string[] = [];
     const edges: DiagramEdge[] = [];
 
@@ -66,16 +69,16 @@ export class DiagramParser {
         for (const edge of parsedEdges) {
           const left = this.parseEndpoint(edge.left);
           const right = this.parseEndpoint(edge.right);
-          this.upsertNode(nodeMap, left);
-          this.upsertNode(nodeMap, right);
-          this.addNodeToSubgraphs(subgraphMap, subgraphStack, left.id);
-          this.addNodeToSubgraphs(subgraphMap, subgraphStack, right.id);
+          if (!subgraphMap.has(left.id)) this.upsertNode(nodeMap, left);
+          if (!subgraphMap.has(right.id)) this.upsertNode(nodeMap, right);
+          this.assignNodeToSubgraph(subgraphMap, nodeParentMap, subgraphStack, left.id);
+          this.assignNodeToSubgraph(subgraphMap, nodeParentMap, subgraphStack, right.id);
           edges.push({ id: `edge-${edges.length + 1}`, from: left.id, to: right.id, label: edge.label, dashed: edge.dashed });
         }
       } else {
         const node = this.parseEndpoint(line);
         this.upsertNode(nodeMap, node);
-        this.addNodeToSubgraphs(subgraphMap, subgraphStack, node.id);
+        this.assignNodeToSubgraph(subgraphMap, nodeParentMap, subgraphStack, node.id);
       }
     }
 
@@ -100,8 +103,7 @@ export class DiagramParser {
       console.warn(`[diagra] Cyclic edges detected (nodes: ${cycleNodes.join(", ")}). Back-edges will be excluded from layout.`);
     }
 
-    const nodes = this.layout([...nodeMap.values()], edges, direction);
-    const subgraphs = this.layoutSubgraphs(nodes, [...subgraphMap.values()]);
+    const { nodes, subgraphs } = this.layoutHierarchy([...nodeMap.values()], [...subgraphMap.values()], edges, direction, nodeParentMap);
     return { type: "flowchart", direction, nodes, edges, subgraphs };
   }
 
@@ -207,16 +209,18 @@ export class DiagramParser {
     return id || "subgraph";
   }
 
-  private addNodeToSubgraphs(
+  private assignNodeToSubgraph(
     subgraphMap: Map<string, Omit<DiagramSubgraph, "x" | "y" | "width" | "height"> & { nodeIds: string[] }>,
+    nodeParentMap: Map<string, string | undefined>,
     subgraphStack: string[],
     nodeId: string
   ): void {
-    for (const subgraphId of subgraphStack) {
-      const subgraph = subgraphMap.get(subgraphId);
-      if (!subgraph || subgraph.nodeIds.includes(nodeId)) continue;
-      subgraph.nodeIds.push(nodeId);
-    }
+    const directParent = subgraphStack.at(-1);
+    if (!directParent) return;
+    const subgraph = subgraphMap.get(directParent);
+    if (!subgraph || subgraph.nodeIds.includes(nodeId)) return;
+    subgraph.nodeIds.push(nodeId);
+    nodeParentMap.set(nodeId, directParent);
   }
 
   private parseEndpoint(raw: string): Omit<DiagramNode, "x" | "y" | "width" | "height"> {
@@ -245,7 +249,8 @@ export class DiagramParser {
   private layout(
     nodes: Array<Omit<DiagramNode, "x" | "y" | "width" | "height">>,
     edges: DiagramEdge[],
-    direction: DiagramAst["direction"]
+    direction: DiagramAst["direction"],
+    sizeOverrides: Map<string, { width: number; height: number }> = new Map()
   ): DiagramNode[] {
     const metrics = {
       padding: 40,
@@ -256,7 +261,12 @@ export class DiagramParser {
       observabilityGap: 96
     };
 
-    const dims = new Map(nodes.map((node) => [node.id, this.nodeDimensions(node.label)]));
+    const dims = new Map(
+      nodes.map((node) => [
+        node.id,
+        sizeOverrides.get(node.id) ?? this.nodeDimensions(node.label)
+      ])
+    );
     const maxNodeWidth = Math.max(...[...dims.values()].map((d) => d.width), 132);
 
     const nodeIds = new Set(nodes.map((node) => node.id));
@@ -400,30 +410,316 @@ export class DiagramParser {
     subgraphs: Array<Omit<DiagramSubgraph, "x" | "y" | "width" | "height"> & { nodeIds: string[] }>
   ): DiagramSubgraph[] {
     const nodesById = new Map(nodes.map((node) => [node.id, node]));
-    return subgraphs
-      .map((subgraph) => {
-        const members = subgraph.nodeIds.map((id) => nodesById.get(id)).filter((node): node is DiagramNode => Boolean(node));
-        if (!members.length) return undefined;
-        const paddingX = 30;
-        const paddingTop = 48;
-        const paddingBottom = 26;
-        const minX = Math.min(...members.map((node) => node.x));
-        const minY = Math.min(...members.map((node) => node.y));
-        const maxX = Math.max(...members.map((node) => node.x + node.width));
-        const maxY = Math.max(...members.map((node) => node.y + node.height));
-        const x = Math.max(8, minX - paddingX);
-        const y = Math.max(8, minY - paddingTop);
-        return {
-          ...subgraph,
-          nodeIds: [...subgraph.nodeIds],
-          x,
-          y,
-          width: maxX - x + paddingX,
-          height: maxY - y + paddingBottom
-        };
-      })
-      .filter((subgraph): subgraph is DiagramSubgraph => Boolean(subgraph))
-      .sort((a, b) => b.width * b.height - a.width * a.height);
+    const subgraphById = new Map(subgraphs.map((subgraph) => [subgraph.id, subgraph]));
+    const childrenByParent = new Map<string, string[]>();
+
+    for (const subgraph of subgraphs) {
+      if (!subgraph.parentId) continue;
+      childrenByParent.set(subgraph.parentId, [...(childrenByParent.get(subgraph.parentId) ?? []), subgraph.id]);
+    }
+
+    const cache = new Map<string, DiagramSubgraph>();
+    const levelCache = new Map<string, number>();
+
+    const levelFor = (subgraphId: string): number => {
+      const cached = levelCache.get(subgraphId);
+      if (cached !== undefined) return cached;
+      const subgraph = subgraphById.get(subgraphId);
+      if (!subgraph?.parentId) {
+        levelCache.set(subgraphId, 0);
+        return 0;
+      }
+      const level = 1 + levelFor(subgraph.parentId);
+      levelCache.set(subgraphId, level);
+      return level;
+    };
+
+    const compute = (subgraphId: string, trail = new Set<string>()): DiagramSubgraph | undefined => {
+      const cached = cache.get(subgraphId);
+      if (cached) return cached;
+      if (trail.has(subgraphId)) return undefined;
+
+      const source = subgraphById.get(subgraphId);
+      if (!source) return undefined;
+
+      trail.add(subgraphId);
+      const memberNodes = source.nodeIds
+        .map((id) => nodesById.get(id))
+        .filter((node): node is DiagramNode => Boolean(node));
+      const childBoxes = (childrenByParent.get(subgraphId) ?? [])
+        .map((childId) => compute(childId, trail))
+        .filter((child): child is DiagramSubgraph => Boolean(child));
+      const bounds = [...memberNodes, ...childBoxes];
+
+      if (!bounds.length) {
+        trail.delete(subgraphId);
+        return undefined;
+      }
+
+      const minX = Math.min(...bounds.map((item) => item.x));
+      const minY = Math.min(...bounds.map((item) => item.y));
+      const maxX = Math.max(...bounds.map((item) => item.x + item.width));
+      const maxY = Math.max(...bounds.map((item) => item.y + item.height));
+      const level = levelFor(subgraphId);
+      const paddingX = level === 0 ? 22 : level === 1 ? 20 : 18;
+      const paddingTop = level === 0 ? 42 : level === 1 ? 38 : 34;
+      const paddingBottom = 20;
+      const x = Math.max(8, minX - paddingX);
+      const y = Math.max(8, minY - paddingTop);
+      const computed = {
+        ...source,
+        nodeIds: [...source.nodeIds],
+        x,
+        y,
+        width: maxX - x + paddingX,
+        height: maxY - y + paddingBottom
+      };
+
+      cache.set(subgraphId, computed);
+      trail.delete(subgraphId);
+      return computed;
+    };
+
+    for (const subgraph of subgraphs) {
+      compute(subgraph.id);
+    }
+
+    return [...cache.values()].sort((a, b) => {
+      const levelDelta = levelFor(a.id) - levelFor(b.id);
+      if (levelDelta) return levelDelta;
+      return (a.y - b.y) || (a.x - b.x) || (b.width * b.height - a.width * a.height);
+    });
+  }
+
+  private layoutHierarchy(
+    nodes: Array<Omit<DiagramNode, "x" | "y" | "width" | "height">>,
+    subgraphs: Array<Omit<DiagramSubgraph, "x" | "y" | "width" | "height"> & { nodeIds: string[] }>,
+    edges: DiagramEdge[],
+    direction: DiagramAst["direction"],
+    nodeParentMap: Map<string, string | undefined>
+  ): { nodes: DiagramNode[]; subgraphs: DiagramSubgraph[] } {
+    const ROOT = "__root__";
+    const nodeById = new Map(nodes.map((node) => [node.id, node]));
+    const subgraphById = new Map(subgraphs.map((subgraph) => [subgraph.id, subgraph]));
+    const childrenByParent = new Map<string, string[]>();
+    const directNodesByParent = new Map<string, string[]>();
+    const ancestorCache = new Map<string, string[]>();
+
+    const parentKey = (id?: string): string => id ?? ROOT;
+
+    for (const node of nodes) {
+      const key = parentKey(nodeParentMap.get(node.id));
+      directNodesByParent.set(key, [...(directNodesByParent.get(key) ?? []), node.id]);
+    }
+    for (const subgraph of subgraphs) {
+      const key = parentKey(subgraph.parentId);
+      childrenByParent.set(key, [...(childrenByParent.get(key) ?? []), subgraph.id]);
+    }
+
+    const ancestorChain = (parentId?: string): string[] => {
+      const cached = ancestorCache.get(parentId ?? ROOT);
+      if (cached) return cached;
+      const chain: string[] = [];
+      let current = parentId;
+      while (current) {
+        chain.unshift(current);
+        current = subgraphById.get(current)?.parentId;
+      }
+      ancestorCache.set(parentId ?? ROOT, chain);
+      return chain;
+    };
+
+    const immediateChild = (containerId: string | undefined, endpointId: string): string | undefined => {
+      if (nodeById.has(endpointId)) {
+        const parentId = nodeParentMap.get(endpointId);
+        const chain = ancestorChain(parentId);
+        if (!containerId) return chain[0] ?? endpointId;
+        if (parentId === containerId) return endpointId;
+        const index = chain.indexOf(containerId);
+        if (index === -1) return undefined;
+        return chain[index + 1] ?? endpointId;
+      }
+
+      const subgraph = subgraphById.get(endpointId);
+      if (!subgraph) return undefined;
+      const parentId = subgraph.parentId;
+      const chain = ancestorChain(parentId);
+      if (!containerId) return chain[0] ?? endpointId;
+      if (parentId === containerId) return endpointId;
+      const index = chain.indexOf(containerId);
+      if (index === -1) return undefined;
+      return chain[index + 1] ?? endpointId;
+    };
+
+    const boundsFor = (items: BoxLike[]): { x: number; y: number; width: number; height: number } => {
+      const minX = Math.min(...items.map((item) => item.x));
+      const minY = Math.min(...items.map((item) => item.y));
+      const maxX = Math.max(...items.map((item) => item.x + item.width));
+      const maxY = Math.max(...items.map((item) => item.y + item.height));
+      return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+    };
+
+    const shiftSubtree = (result: { nodes: DiagramNode[]; subgraphs: DiagramSubgraph[]; box?: DiagramSubgraph }, dx: number, dy: number): void => {
+      for (const node of result.nodes) {
+        node.x += dx;
+        node.y += dy;
+      }
+      for (const subgraph of result.subgraphs) {
+        subgraph.x += dx;
+        subgraph.y += dy;
+      }
+      if (result.box) {
+        result.box.x += dx;
+        result.box.y += dy;
+      }
+    };
+
+    const boxFromSubtree = (
+      subgraphId: string,
+      subtree: { nodes: DiagramNode[]; subgraphs: DiagramSubgraph[] }
+    ): DiagramSubgraph | undefined => {
+      const source = subgraphById.get(subgraphId);
+      const items: BoxLike[] = [...subtree.nodes, ...subtree.subgraphs].map(({ x, y, width, height }) => ({ x, y, width, height }));
+      if (!source || !items.length) return undefined;
+      const level = this.nestingLevel(subgraphId, subgraphById);
+      const paddingX = level === 0 ? 22 : level === 1 ? 20 : 18;
+      const paddingTop = level === 0 ? 42 : level === 1 ? 38 : 34;
+      const paddingBottom = 20;
+      const bounds = boundsFor(items);
+      return {
+        ...source,
+        nodeIds: [...source.nodeIds],
+        x: Math.max(8, bounds.x - paddingX),
+        y: Math.max(8, bounds.y - paddingTop),
+        width: bounds.width + paddingX * 2,
+        height: bounds.height + paddingTop + paddingBottom
+      };
+    };
+
+    const layoutContainer = (containerId?: string): { nodes: DiagramNode[]; subgraphs: DiagramSubgraph[]; box?: DiagramSubgraph } => {
+      const childNodeIds = directNodesByParent.get(parentKey(containerId)) ?? [];
+      const childSubgraphIds = childrenByParent.get(parentKey(containerId)) ?? [];
+      const childResults = childSubgraphIds.map((subgraphId) => ({
+        subgraph: subgraphById.get(subgraphId)!,
+        result: layoutContainer(subgraphId)
+      }));
+
+      const localItems: Array<Omit<DiagramNode, "x" | "y" | "width" | "height">> = [
+        ...childNodeIds.map((nodeId) => nodeById.get(nodeId)!),
+        ...childResults.map(({ subgraph }) => ({
+          id: subgraph.id,
+          label: subgraph.label,
+          classes: [] as string[]
+        }))
+      ];
+      const sizeOverrides = new Map<string, { width: number; height: number }>(
+        childResults.map(({ subgraph, result }) => [
+          subgraph.id,
+          { width: result.box?.width ?? 0, height: result.box?.height ?? 0 }
+        ])
+      );
+
+      const localItemIds = new Set(localItems.map((item) => item.id));
+      const localEdges = edges
+        .map((edge) => ({
+          ...edge,
+          from: immediateChild(containerId, edge.from),
+          to: immediateChild(containerId, edge.to)
+        }))
+        .filter((edge) => Boolean(edge.from && edge.to && edge.from !== edge.to && localItemIds.has(edge.from) && localItemIds.has(edge.to)))
+        .map((edge) => ({ ...edge, from: edge.from!, to: edge.to! }));
+
+      const positioned = new Map(this.layout(localItems, localEdges, direction, sizeOverrides).map((item) => [item.id, item]));
+      const nodesOut: DiagramNode[] = childNodeIds
+        .map((nodeId) => positioned.get(nodeId))
+        .filter((node): node is DiagramNode => Boolean(node));
+      const subgraphsOut: DiagramSubgraph[] = [];
+
+      for (const { subgraph, result } of childResults) {
+        const childBox = result.box ?? boxFromSubtree(subgraph.id, result);
+        const placed = positioned.get(subgraph.id);
+        if (!placed || !childBox) continue;
+        if (!result.box) result.box = childBox;
+        const dx = placed.x - childBox.x;
+        const dy = placed.y - childBox.y;
+        shiftSubtree(result, dx, dy);
+        nodesOut.push(...result.nodes);
+        subgraphsOut.push(...result.subgraphs);
+      }
+
+      const level = containerId ? this.nestingLevel(containerId, subgraphById) : 0;
+      const headerSpace = containerId ? (level === 0 ? 26 : level === 1 ? 22 : 18) : 0;
+      if (headerSpace) {
+        for (const node of nodesOut) node.y += headerSpace;
+        for (const subgraph of subgraphsOut) subgraph.y += headerSpace;
+        for (const { result } of childResults) {
+          if (result.box) result.box.y += headerSpace;
+        }
+      }
+
+      const childBoxes: DiagramSubgraph[] = childResults
+        .map(({ result }) => result.box)
+        .filter((box): box is DiagramSubgraph => Boolean(box));
+      const localBoxes: BoxLike[] = [
+        ...nodesOut,
+        ...childBoxes.map(({ x, y, width, height }) => ({ x, y, width, height }))
+      ];
+      if (!localBoxes.length) {
+        return { nodes: nodesOut, subgraphs: subgraphsOut };
+      }
+
+      const paddingX = level === 0 ? 22 : level === 1 ? 20 : 18;
+      const paddingTop = level === 0 ? 42 : level === 1 ? 38 : 34;
+      const paddingBottom = 20;
+      const bounds = boundsFor(localBoxes);
+      const box = containerId
+        ? {
+            id: containerId,
+            label: subgraphById.get(containerId)?.label ?? containerId,
+            nodeIds: [...(subgraphById.get(containerId)?.nodeIds ?? [])],
+            parentId: subgraphById.get(containerId)?.parentId,
+            style: subgraphById.get(containerId)?.style,
+            x: Math.max(8, bounds.x - paddingX),
+            y: Math.max(8, bounds.y - paddingTop),
+            width: bounds.width + paddingX * 2,
+            height: bounds.height + paddingTop + paddingBottom
+          }
+        : undefined;
+
+      if (box) {
+        const dx = box.x - bounds.x;
+        const dy = box.y - bounds.y;
+        for (const node of nodesOut) {
+          node.x += dx;
+          node.y += dy;
+        }
+        for (const subgraph of subgraphsOut) {
+          subgraph.x += dx;
+          subgraph.y += dy;
+        }
+      }
+
+      return {
+        nodes: nodesOut,
+        subgraphs: box ? [...subgraphsOut, box] : subgraphsOut
+      };
+    };
+
+    const root = layoutContainer(undefined);
+    return { nodes: root.nodes, subgraphs: root.subgraphs };
+  }
+
+  private nestingLevel(
+    subgraphId: string,
+    subgraphById: Map<string, Omit<DiagramSubgraph, "x" | "y" | "width" | "height"> & { nodeIds: string[] }>
+  ): number {
+    let level = 0;
+    let current = subgraphById.get(subgraphId)?.parentId;
+    while (current) {
+      level += 1;
+      current = subgraphById.get(current)?.parentId;
+    }
+    return level;
   }
 
   private layoutVertical(

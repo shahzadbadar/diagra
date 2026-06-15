@@ -11,7 +11,7 @@ export class NodeRenderer {
     const stroke = node.style?.stroke ?? "var(--node-border)";
     const textColor = node.style?.color ?? "var(--node-text)";
     const iconBlock = icon
-      ? this.renderIcon(this.sanitizeIconSvg(icon), iconX, iconY)
+      ? this.renderIcon(icon, iconX, iconY)
       : `<circle cx="${node.x + node.width / 2}" cy="${node.y + 28}" r="15" fill="var(--accent)" opacity="0.18"/>`;
 
     let textEl: string;
@@ -50,21 +50,27 @@ export class NodeRenderer {
     return line2Text ? [line1Text, line2Text] : [label];
   }
 
+  /** Strip headers and unsafe content before inlining provider SVGs into the diagram. */
   private sanitizeIconSvg(svg: string): string {
     return svg
+      .replace(/<\?xml[\s\S]*?\?>/gi, "")
+      .replace(/<!DOCTYPE[\s\S]*?>/gi, "")
       .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
       .replace(/\s+on\w+="[^"]*"/gi, "")
       .replace(/\s+on\w+='[^']*'/gi, "")
-      .replace(/<foreignObject\b[\s\S]*?<\/foreignObject>/gi, "");
+      .replace(/<foreignObject\b[\s\S]*?<\/foreignObject>/gi, "")
+      .trim();
   }
 
   private renderIcon(icon: string, x: number, y: number): string {
-    const svgMatch = icon.match(/^<svg\b([^>]*)>/i);
+    const cleaned = this.sanitizeIconSvg(icon);
+    const svgMatch = cleaned.match(/<svg\b([^>]*)>/i);
     if (!svgMatch) {
-      return `<g transform="translate(${x}, ${y})">${icon}</g>`;
+      return `<g transform="translate(${x}, ${y})">${cleaned}</g>`;
     }
 
     const attrs = svgMatch[1].replace(/\s(?:x|y|width|height)="[^"]*"/gi, "");
-    return icon.replace(/^<svg\b[^>]*>/i, `<svg x="${x}" y="${y}" width="32" height="32"${attrs}>`);
+    const openTag = `<svg x="${x}" y="${y}" width="32" height="32"${attrs}>`;
+    return cleaned.replace(/<svg\b[^>]*>/i, openTag);
   }
 }

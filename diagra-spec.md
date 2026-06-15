@@ -241,65 +241,87 @@ Every rendered SVG includes:
 
 ## 6. Icon Pack Structure
 
+### 6.1 Bundled generic pack
+
+Generic icons ship inside `@diagra/core`:
+
 ```
-packages/
-  icons/
-    aws/
-      manifest.json        ← maps class names to file paths
-      svg/
-        lambda.svg
-        s3.svg
-        dynamodb.svg
-        apigateway.svg
-        ec2.svg
-        rds.svg
-        cloudfront.svg
-        sqs.svg
-        sns.svg
-        cognito.svg
-        ... (top 30 services for MVP)
-    gcp/
-      manifest.json
-      svg/
-        bigquery.svg
-        cloudrun.svg
-        pubsub.svg
-        cloudstorage.svg
-        ... (top 20 services for MVP)
-    azure/
-      manifest.json
-      svg/
-        functions.svg
-        cosmosdb.svg
-        blobstorage.svg
-        servicebus.svg
-        ... (top 20 services for MVP)
-    generic/
-      manifest.json
-      svg/
-        server.svg
-        database.svg
-        user.svg
-        cloud.svg
-        api.svg
-        mobile.svg
-        browser.svg
-        queue.svg
+packages/core/icons/
+  generic/
+    manifest.json
+    svg/
+      user.svg
+      server.svg
+      database.svg
+      api.svg
+      cloud.svg
+      browser.svg
+      queue.svg
+      workflow.svg
+      ...
 ```
 
-### 6.1 manifest.json format
+### 6.2 User-installed cloud packs (cache)
+
+AWS, Azure, and GCP icons are **not** in the repository. They are installed via CLI and cached per user:
+
+```
+~/Library/Caches/diagra/icons/     (macOS)
+~/.cache/diagra/icons/             (Linux)
+%LOCALAPPDATA%\diagra\icons\       (Windows)
+
+  aws/
+    manifest.json
+    svg/
+      lambda.svg
+      cloudfront.svg
+      res-simple-storage-bucket.svg
+      ...
+  azure/
+    manifest.json
+    svg/
+      ...
+  gcp/
+    manifest.json
+    svg/
+      ...
+```
+
+Install:
+
+```bash
+diagra icons install aws --yes
+diagra icons install aws --from ./Icon-package.zip
+```
+
+AWS downloads from the official Architecture Icons zip published by AWS.
+
+### 6.3 Canonical aliases
+
+Diagrams use short class names (`:::aws-s3`, `:::aws-sqs`). Official AWS filenames are longer (`res-simple-storage-bucket`, `simple-queue`). `CanonicalIcons.ts` maps short names to installed filenames at load time and when building the cache manifest.
+
+### 6.4 manifest.json format
 
 ```json
 {
-  "prefix": "aws",
+  "pack": "aws",
+  "source": "AWS Architecture Icons",
+  "license": "AWS icon and trademark terms",
   "icons": {
     "lambda": "svg/lambda.svg",
-    "s3": "svg/s3.svg",
+    "s3": "svg/res-simple-storage-bucket.svg",
     "dynamodb": "svg/dynamodb.svg",
-    "apigateway": "svg/apigateway.svg"
+    "apigateway": "svg/api-gateway.svg"
   }
 }
 ```
+
+### 6.5 Install and embed safeguards
+
+- **Install** — skips `__MACOSX/` and `._*` macOS metadata files; rejects non-SVG binary content; keeps the largest valid file when duplicate names collide.
+- **Embed** — strips `<?xml` and `<!DOCTYPE` from provider SVGs before inlining into the output diagram SVG.
+
+Full reference → `docs/icons.md`
 
 ---
 
@@ -381,6 +403,11 @@ diagra init --template aws-serverless
 
 # List available icons
 diagra icons list --pack aws
+diagra icons status
+
+# Install official provider icons (cached locally)
+diagra icons install aws --yes
+diagra icons install aws --from ./Icon-package.zip
 
 # Validate a .diagra file
 diagra validate diagram.diagra

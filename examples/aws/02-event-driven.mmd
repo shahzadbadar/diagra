@@ -1,24 +1,19 @@
-%%diagra:theme light
-%%diagra:icons aws
-%%diagra:animate flow
-%%diagra:font Inter
-
 flowchart LR
   %% Domain services publish business events to a shared event bus.
-  Orders[Orders Service]:::aws-lambda
-  Payments[Payments Service]:::aws-lambda
-  Inventory[Inventory Service]:::aws-lambda
-  EventBridge[EventBridge Event Bus]:::aws-eventbridge
+  Orders[Orders Service]
+  Payments[Payments Service]
+  Inventory[Inventory Service]
+  EventBridge[EventBridge Event Bus]
 
   %% EventBridge routes fanout notifications and durable async work.
-  SNS[Customer Notification Topic]:::aws-sns
-  SQS[Fulfillment Queue]:::aws-sqs
-  DLQ[Dead Letter Queue]:::aws-sqs
+  SNS[Customer Notification Topic]
+  SQS[Fulfillment Queue]
+  DLQ[Dead Letter Queue]
 
   %% Consumers process work asynchronously.
-  EmailWorker[Email Lambda Consumer]:::aws-lambda
-  FulfillmentWorker[Fulfillment Lambda Consumer]:::aws-lambda
-  CloudWatch[CloudWatch Monitoring]:::aws-cloudwatch
+  EmailWorker[Email Lambda Consumer]
+  FulfillmentWorker[Fulfillment Lambda Consumer]
+  CloudWatch[CloudWatch Monitoring]
 
   Orders -->|OrderCreated| EventBridge
   Payments -->|PaymentCaptured| EventBridge

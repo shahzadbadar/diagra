@@ -35,6 +35,9 @@ importers:
       '@diagra/core':
         specifier: file:../core
         version: link:../core
+      adm-zip:
+        specifier: ^0.5.17
+        version: 0.5.17
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0

@@ -1,5 +1,16 @@
 # Diagra Examples
 
+Most AWS, Azure, and GCP examples use official provider icons. Install the matching pack before rendering:
+
+```bash
+npx diagra icons install aws --yes
+npx diagra render examples/aws/01-serverless-api.diagra
+```
+
+Generic examples under `general/` work without installing cloud icon packs.
+
+See [`docs/icons.md`](../docs/icons.md) and [`docs/installation.md`](../docs/installation.md).
+
 ## AWS
 - `aws/01-serverless-api.diagra` - Serverless REST API with CloudFront, API Gateway, Lambda, DynamoDB, S3, Cognito, CloudWatch, and X-Ray.
 - `aws/02-event-driven.diagra` - EventBridge-driven microservices with SNS, SQS, Lambda consumers, a DLQ, and CloudWatch.

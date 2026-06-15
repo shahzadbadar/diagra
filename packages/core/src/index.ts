@@ -12,6 +12,21 @@ export * from "./types";
 export { DiagramParser } from "./parser/DiagramParser";
 export { DirectiveParser } from "./parser/DirectiveParser";
 export { IconLoader } from "./icons/IconLoader";
+export { applyCanonicalAliases, canonicalAliasesFor, resolveCanonicalIcon } from "./icons/CanonicalIcons";
+export type { CanonicalIconAlias } from "./icons/CanonicalIcons";
+export {
+  bundledIconManifestCandidates,
+  bundledIconManifestPath,
+  ensureIconPackDir,
+  hasInstalledIconPack,
+  iconCacheDir,
+  iconManifestPath,
+  iconPackDir,
+  isInstallableIconPack,
+  listInstalledIconPacks,
+  readIconManifest
+} from "./icons/IconPacks";
+export type { IconManifest, InstallableIconPack, ResolvableIconPack } from "./icons/IconPacks";
 export { IconResolver } from "./icons/IconResolver";
 export { ThemeEngine } from "./themes/ThemeEngine";
 export { NodeRenderer } from "./renderer/NodeRenderer";
