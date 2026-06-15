@@ -9,20 +9,56 @@
 
 ## The problem with Mermaid
 
-You write this:
+You write standard Mermaid — same nodes, same edges, same labels:
 
-```
+```mermaid
 flowchart LR
-  A[API Gateway] --> B[Lambda] --> C[DynamoDB]
+  Orders[Orders Service]
+  Payments[Payments Service]
+  Inventory[Inventory Service]
+  EventBridge[EventBridge Event Bus]
+  SNS[Customer Notification Topic]
+  SQS[Fulfillment Queue]
+  DLQ[Dead Letter Queue]
+  EmailWorker[Email Lambda Consumer]
+  FulfillmentWorker[Fulfillment Lambda Consumer]
+  CloudWatch[CloudWatch Monitoring]
+
+  Orders -->|OrderCreated| EventBridge
+  Payments -->|PaymentCaptured| EventBridge
+  Inventory -->|StockChanged| EventBridge
+  EventBridge -->|Notify Customers| SNS
+  EventBridge -->|Queue Work| SQS
+  SNS -->|Fanout| EmailWorker
+  SQS -->|Batch Consume| FulfillmentWorker
+  SQS -->|Failed Messages| DLQ
+  EventBridge -.->|Rule Metrics| CloudWatch
+  SNS -.->|Delivery Metrics| CloudWatch
+  SQS -.->|Queue Depth| CloudWatch
+  DLQ -.->|Alarms| CloudWatch
 ```
 
-You get this → plain gray boxes. Every time. On every project.
+You get plain gray boxes. Every time.
 
-**Diagra renders the same syntax like this:**
+**Add Diagra directives and icon classes to the same diagram — zero syntax changes to the flowchart itself:**
 
-![Diagra dark theme with AWS icons and animated flow](docs/assets/flowchart.svg)
+```
+%%diagra:theme light
+%%diagra:icons aws
+%%diagra:animate flow
 
-Same file. Zero syntax changes. Just better.
+flowchart LR
+  Orders[Orders Service]:::aws-lambda
+  ...
+```
+
+**Diagra renders it like this:**
+
+![AWS event-driven architecture with official icons — EventBridge, SNS, SQS, Lambda](docs/assets/aws-event-driven.svg)
+
+Source files: [`02-event-driven.diagra`](examples/aws/02-event-driven.diagra) · [`02-event-driven.mmd`](examples/aws/02-event-driven.mmd) (equivalent standard Mermaid)
+
+Same topology. Just better.
 
 ---
 
