@@ -2,7 +2,7 @@
 
 **Mermaid diagrams. But actually beautiful.**
 
-> Same syntax you already know. Real AWS, GCP, and Azure icons.  
+> Same syntax you already know. Generic icons built in, official cloud icons installed locally.  
 > Animated data flow. Export anywhere. Free and open source.
 
 ---
@@ -28,19 +28,48 @@ Same file. Zero syntax changes. Just better.
 
 ## Install
 
-```bash
-npm install -g diagra
-```
+**Requirements:** Node.js 18+ on macOS, Linux, or Windows.
+
+### Use the published CLI
 
 ```bash
+# Global install — then `diagra` works in any terminal
+npm install -g diagra
+
+# Or run once without installing
 npx diagra render architecture.diagra
 ```
+
+### Develop from this repo
+
+After `pnpm install` (or `npm install`) in the repo root, the CLI is built to `node_modules/.bin/diagra` but is **not** on your PATH. Use one of:
+
+```bash
+# macOS / Linux
+./node_modules/.bin/diagra icons install aws --yes
+./node_modules/.bin/diagra render examples/aws/01-serverless-api.diagra
+
+# Windows (PowerShell)
+.\node_modules\.bin\diagra icons install aws --yes
+
+# Any OS
+npx diagra icons install aws --yes
+npx diagra render examples/aws/01-serverless-api.diagra
+```
+
+Full cross-platform setup, `npm link`, and troubleshooting → [`docs/installation.md`](docs/installation.md)
 
 ---
 
 ## Quick start
 
-Create a file `architecture.diagra`:
+**1. Install cloud icons** (required for AWS/Azure/GCP diagrams):
+
+```bash
+npx diagra icons install aws --yes
+```
+
+**2. Create** a file `architecture.diagra`:
 
 ```
 %%diagra:theme dark
@@ -66,6 +95,8 @@ Run it:
 npx diagra render architecture.diagra --format all
 ```
 
+Generic-only diagrams work without step 1. Examples in `examples/general/` need no cloud icon install.
+
 You get:
 ```
 architecture.svg      ← embed in docs, Notion, wikis
@@ -79,15 +110,15 @@ architecture.mmd      ← standard Mermaid fallback
 
 ## What makes it different
 
-**Icon packs built in**
+**Icon packs**
 
 ```
-:::aws-lambda       :::aws-dynamodb     :::aws-s3
-:::aws-apigateway   :::aws-cloudwatch   :::aws-eventbridge
-:::gcp-bigquery     :::gcp-cloudrun     :::gcp-pubsub
-:::azure-functions  :::azure-cosmosdb   :::azure-blob
 :::generic-user     :::generic-server   :::generic-database
+:::generic-api      :::generic-cloud    :::generic-workflow
+:::aws-lambda       :::gcp-cloudrun     :::azure-functions
 ```
+
+Diagra ships generic icons. Official AWS, Azure, and GCP icons are installed locally with `diagra icons install`.
 
 **Themes that don't look like 2015**
 
@@ -181,8 +212,15 @@ diagra init --template aws-serverless
 diagra init --template gcp-data-pipeline
 diagra init --template n8n-workflow
 
-# List available icons
-diagra icons list --pack aws
+# List bundled generic icons
+diagra icons list --pack generic
+
+# Check installed icon packs
+diagra icons status
+
+# Install official provider icons locally (use --yes to skip prompt)
+diagra icons install aws --yes
+diagra icons install aws --from ./aws-icons.zip
 
 # Validate syntax before rendering
 diagra validate diagram.diagra
@@ -273,18 +311,45 @@ Currently supported diagram types:
 
 ## Icon packs
 
-| Pack | Services | Source |
+Diagra ships a **built-in generic** icon pack (`packages/core/icons/generic/`).
+
+Official **AWS, Azure, and GCP** icons are not bundled. Install them once — they are cached on your machine:
+
+```bash
+diagra icons install aws --yes
+diagra icons install azure --yes
+diagra icons install gcp --yes
+```
+
+| OS | Cache path |
+|---|---|
+| macOS | `~/Library/Caches/diagra/icons/` |
+| Linux | `~/.cache/diagra/icons/` |
+| Windows | `%LOCALAPPDATA%\diagra\icons\` |
+
+AWS icons download from the [official AWS Architecture Icons zip](https://d1.awsstatic.com/onedam/marketing-channels/website/aws/en_US/architecture/approved/architecture-icons/Icon-package_04302026.4705b90f5aa45b019271a2699e9ce9b97b941ee1.zip). Diagrams use short names like `:::aws-s3` and `:::aws-lambda`; Diagra maps these to the official filenames automatically.
+
+Inspect and troubleshoot:
+
+```bash
+diagra icons status
+diagra icons list --pack aws
+diagra icons install aws --from ./Icon-package.zip   # manual fallback
+```
+
+These icons remain on your machine and are subject to each provider's brand and trademark terms.
+
+| Pack | Availability | Source |
 |---|---|---|
-| AWS | 30 services | Official AWS Architecture Icons |
-| GCP | 20 services | Google Cloud Icons |
-| Azure | 20 services | Microsoft Azure Icons |
-| Generic | 8 icons | user, server, database, cloud, api, browser, mobile, queue |
+| Generic | Bundled | Lucide, MIT |
+| AWS | Local install | Official AWS Architecture Icons |
+| GCP | Local install | Google Cloud Icons |
+| Azure | Local install | Microsoft Azure Icons |
 
-Full icon reference → [`docs/icons.md`](docs/icons.md)
+Full icon reference → [`docs/icons.md`](docs/icons.md)  
+Installation (macOS / Linux / Windows) → [`docs/installation.md`](docs/installation.md)
 
-> AWS, GCP, and Azure icons are property of their respective owners,
-> used under their icon usage guidelines for architecture diagrams
-> and technical documentation.
+> AWS, GCP, and Azure icons are property of their respective owners and are subject to each provider's icon usage, brand, and trademark terms.
 
 ---
 
@@ -293,9 +358,7 @@ Full icon reference → [`docs/icons.md`](docs/icons.md)
 Diagra is early — contributions very welcome.
 
 **Good first issues:**
-- Add missing AWS service icons
-- Add GCP icon pack completion  
-- Add Azure icon pack completion
+- Improve official icon installer mappings
 - Fix edge routing for complex diagrams
 - Add sequence diagram support
 - Build VS Code extension
@@ -307,8 +370,11 @@ git clone https://github.com/shahzadq/diagra
 cd diagra
 pnpm install
 pnpm build
+npx diagra icons install aws --yes
 npx diagra render examples/aws/01-serverless-api.diagra
 ```
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/installation.md`](docs/installation.md) for developer setup.
 
 ---
 

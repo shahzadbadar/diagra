@@ -1,0 +1,24 @@
+{
+  "pack": "generic",
+  "license": "MIT",
+  "source": "Lucide",
+  "icons": {
+    "agent": "svg/agent.svg",
+    "ai": "svg/ai.svg",
+    "api": "svg/api.svg",
+    "cache": "svg/cache.svg",
+    "cloud": "svg/cloud.svg",
+    "database": "svg/database.svg",
+    "event": "svg/event.svg",
+    "mobile": "svg/mobile.svg",
+    "monitoring": "svg/monitoring.svg",
+    "queue": "svg/queue.svg",
+    "security": "svg/security.svg",
+    "server": "svg/server.svg",
+    "storage": "svg/storage.svg",
+    "stream": "svg/stream.svg",
+    "user": "svg/user.svg",
+    "web": "svg/web.svg",
+    "workflow": "svg/workflow.svg"
+  }
+}

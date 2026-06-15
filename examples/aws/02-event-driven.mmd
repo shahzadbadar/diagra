@@ -1,0 +1,29 @@
+flowchart LR
+  %% Domain services publish business events to a shared event bus.
+  Orders[Orders Service]
+  Payments[Payments Service]
+  Inventory[Inventory Service]
+  EventBridge[EventBridge Event Bus]
+
+  %% EventBridge routes fanout notifications and durable async work.
+  SNS[Customer Notification Topic]
+  SQS[Fulfillment Queue]
+  DLQ[Dead Letter Queue]
+
+  %% Consumers process work asynchronously.
+  EmailWorker[Email Lambda Consumer]
+  FulfillmentWorker[Fulfillment Lambda Consumer]
+  CloudWatch[CloudWatch Monitoring]
+
+  Orders -->|OrderCreated| EventBridge
+  Payments -->|PaymentCaptured| EventBridge
+  Inventory -->|StockChanged| EventBridge
+  EventBridge -->|Notify Customers| SNS
+  EventBridge -->|Queue Work| SQS
+  SNS -->|Fanout| EmailWorker
+  SQS -->|Batch Consume| FulfillmentWorker
+  SQS -->|Failed Messages| DLQ
+  EventBridge -.->|Rule Metrics| CloudWatch
+  SNS -.->|Delivery Metrics| CloudWatch
+  SQS -.->|Queue Depth| CloudWatch
+  DLQ -.->|Alarms| CloudWatch

@@ -66,8 +66,65 @@ describe("Diagra", () => {
 
     expect(result.svg).toContain(`id="subgraph-app"`);
     expect(result.svg).toContain(`Application</text>`);
-    expect(result.svg).toContain(`stroke="#38bdf8" stroke-width="1.2"`);
+    expect(result.svg).toContain(`stroke="#38bdf8"`);
+    expect(result.svg).toContain(`stroke-width="1.5"`);
     expect(result.svg.indexOf(`id="subgraph-app"`)).toBeLessThan(result.svg.indexOf(`id="node-A"`));
+  });
+
+  it("renders nested subgraphs without turning containers into nodes", async () => {
+    const source = `%%diagra:theme dark
+%%diagra:icons aws
+%%diagra:animate flow
+%%diagra:title Nested Subgraph Test
+
+flowchart LR
+
+  subgraph production[Production Agent]
+    subgraph agentic[Agentic Layer]
+      subgraph guardrails[Input Guardrails]
+        retriever[Secure Retrieval]:::generic-server
+        boundary[Trusted Boundary]:::generic-server
+      end
+      llm[LLM]:::generic-api
+      tools[Tools]:::generic-server
+    end
+    subgraph data[Context & Data Layer]
+      db[Database]:::generic-database
+      docs[Documents]:::generic-server
+      kb[Knowledge Base]:::generic-database
+    end
+  end
+
+  user[User]:::generic-user
+  answer[Answer]:::generic-api
+
+  user --> agentic
+  llm --> tools
+  tools --> data
+  data --> answer`;
+
+    const parsed = await new DiagramParser().parse(source);
+    const result = await new Diagra().render(source);
+    const nodes = new Map(parsed.ast.nodes.map((node) => [node.id, node]));
+    const subgraphs = new Map(parsed.ast.subgraphs.map((subgraph) => [subgraph.id, subgraph]));
+
+    expect(nodes.has("agentic")).toBe(false);
+    expect(nodes.has("data")).toBe(false);
+    expect(subgraphs.get("production")).toBeDefined();
+    expect(subgraphs.get("agentic")).toBeDefined();
+    expect(subgraphs.get("guardrails")).toBeDefined();
+    expect(subgraphs.get("data")).toBeDefined();
+    expect(result.svg).toContain(`id="subgraph-production"`);
+    expect(result.svg).toContain(`id="subgraph-agentic"`);
+    expect(result.svg).toContain(`id="subgraph-guardrails"`);
+    expect(result.svg).toContain(`id="subgraph-data"`);
+    expect(result.svg).not.toContain(`id="node-agentic"`);
+    expect(result.svg).not.toContain(`id="node-data"`);
+    expect(result.svg).toContain(`font-size="13"`);
+    expect(result.svg).toContain(`font-size="12"`);
+    expect(result.svg).toContain(`font-size="11"`);
+    const height = Number(result.svg.match(/height="(\d+)"/)?.[1] ?? 0);
+    expect(height).toBeLessThan(1300);
   });
 
   it("lays out branches across vertical lanes", async () => {
@@ -141,6 +198,20 @@ describe("Diagra", () => {
 
     expect(svg).toContain(`<svg x="54" y="32" width="32" height="32" viewBox="0 0 32 32" role="img">`);
     expect(svg).not.toContain(`width="32" height="32"><svg`);
+  });
+
+  it("strips xml declarations from embedded provider icons", () => {
+    const svg = new NodeRenderer().render(
+      { id: "cdn", label: "CDN", classes: ["aws-cloudfront"], x: 10, y: 20, width: 120, height: 84 },
+      `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="24" height="24" fill="#8C4FFF"/>
+</svg>`
+    );
+
+    expect(svg).not.toContain("<?xml");
+    expect(svg).toContain(`<svg x="54" y="32" width="32" height="32"`);
+    expect(svg).toContain(`viewBox="0 0 24 24"`);
   });
 
   it("nudges colliding edge labels and keeps labels off nodes", () => {

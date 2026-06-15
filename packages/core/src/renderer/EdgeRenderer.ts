@@ -2,18 +2,19 @@ import { escapeXml } from "./escape";
 import type { DiagramEdge, DiagramNode } from "../types";
 
 type LabelBox = { x: number; y: number; width: number; height: number };
+type BoxLike = Pick<DiagramNode, "x" | "y" | "width" | "height">;
 
 export class EdgeRenderer {
   private readonly labelBoxes: LabelBox[] = [];
 
-  renderAll(edges: DiagramEdge[], nodesById: Map<string, DiagramNode>): string {
+  renderAll(edges: DiagramEdge[], boxesById: Map<string, BoxLike>): string {
     this.labelBoxes.length = 0;
-    return edges.map((edge) => this.render(edge, nodesById)).filter(Boolean).join("\n");
+    return edges.map((edge) => this.render(edge, boxesById)).filter(Boolean).join("\n");
   }
 
-  render(edge: DiagramEdge, nodesById: Map<string, DiagramNode>): string {
-    const from = nodesById.get(edge.from);
-    const to = nodesById.get(edge.to);
+  render(edge: DiagramEdge, boxesById: Map<string, BoxLike>): string {
+    const from = boxesById.get(edge.from);
+    const to = boxesById.get(edge.to);
     if (!from || !to) return "";
     const start = this.anchor(from, to);
     const end = this.anchor(to, from);
@@ -30,7 +31,7 @@ export class EdgeRenderer {
     const midY = (from.y + from.height / 2 + to.y + to.height / 2) / 2 - 12;
     const labelWidth = Math.max(44, edge.label.length * 7 + 8);
     const labelHeight = 16;
-    const labelY = this.placeLabel(midX, midY, labelWidth, labelHeight, nodesById);
+    const labelY = this.placeLabel(midX, midY, labelWidth, labelHeight, boxesById);
     return `<g class="diagra-edge-label">
   ${path}
   <rect x="${midX - labelWidth / 2 - 4}" y="${labelY - 10}" width="${labelWidth + 8}" height="${labelHeight}" rx="2" fill="var(--bg)" opacity="0.85"/>
@@ -38,13 +39,13 @@ export class EdgeRenderer {
 </g>`;
   }
 
-  private placeLabel(x: number, y: number, width: number, height: number, nodesById: Map<string, DiagramNode>): number {
+  private placeLabel(x: number, y: number, width: number, height: number, boxesById: Map<string, BoxLike>): number {
     let nextY = y;
     let labelBox = this.labelBox(x, nextY, width, height);
 
     for (let attempts = 0; attempts < 30; attempts += 1) {
       const nearLabel = this.labelBoxes.some((box) => Math.abs(box.y - labelBox.y) < 20);
-      const onNode = [...nodesById.values()].some((node) => this.overlaps(labelBox, node));
+      const onNode = [...boxesById.values()].some((box) => this.overlaps(labelBox, box));
       if (!nearLabel && !onNode) break;
       nextY += 16;
       labelBox = this.labelBox(x, nextY, width, height);
@@ -58,8 +59,8 @@ export class EdgeRenderer {
     return { x: x - width / 2, y: y - 12, width, height };
   }
 
-  private overlaps(box: LabelBox, node: DiagramNode): boolean {
-    return box.x < node.x + node.width && box.x + box.width > node.x && box.y < node.y + node.height && box.y + box.height > node.y;
+  private overlaps(box: LabelBox, target: BoxLike): boolean {
+    return box.x < target.x + target.width && box.x + box.width > target.x && box.y < target.y + target.height && box.y + box.height > target.y;
   }
 
   private pathData(start: { x: number; y: number }, end: { x: number; y: number }): string {
@@ -68,7 +69,7 @@ export class EdgeRenderer {
     return `M ${start.x} ${start.y} C ${start.x + curve} ${start.y}, ${end.x - curve} ${end.y}, ${end.x} ${end.y}`;
   }
 
-  private anchor(node: DiagramNode, other: DiagramNode): { x: number; y: number } {
+  private anchor(node: BoxLike, other: BoxLike): { x: number; y: number } {
     const cx = node.x + node.width / 2;
     const cy = node.y + node.height / 2;
     const ox = other.x + other.width / 2;
