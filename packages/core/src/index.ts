@@ -38,6 +38,10 @@ export { PNGExporter } from "./exporters/PNGExporter";
 export { HTMLExporter } from "./exporters/HTMLExporter";
 export { MmdExporter } from "./exporters/MmdExporter";
 export { DrawioExporter } from "./exporters/DrawioExporter";
+export { convertMermaidToDiagra, MermaidConverter } from "./converter/MermaidConverter";
+export type { MermaidConvertOptions } from "./converter/MermaidConverter";
+export { inferIconClass, inferencePackFromDirective } from "./converter/IconInference";
+export type { IconInferencePack, IconInferenceRule } from "./converter/IconInference";
 
 export class Diagra {
   private readonly parser = new DiagramParser();

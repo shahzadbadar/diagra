@@ -40,17 +40,18 @@ flowchart LR
 
 You get plain gray boxes. Every time.
 
-**Add Diagra directives and icon classes to the same diagram — zero syntax changes to the flowchart itself:**
+**Add Diagra directives and icon classes — or convert automatically:**
 
-```
-%%diagra:theme light
-%%diagra:icons aws
-%%diagra:animate flow
+```bash
+# Start from standard Mermaid — infers generic icons from labels
+npx diagra convert diagram.mmd --icons generic
 
-flowchart LR
-  Orders[Orders Service]:::aws-lambda
-  ...
+# Or guess AWS/Azure/GCP icons from service names in labels
+npx diagra convert diagram.mmd --icons aws
+npx diagra render diagram.diagra
 ```
+
+Then tweak `:::generic-server` → `:::aws-lambda` in the `.diagra` file for exact provider icons.
 
 **Diagra renders it like this:**
 
@@ -231,6 +232,10 @@ All directives are optional. Standard Mermaid files render without them.
 ## CLI
 
 ```bash
+# Convert standard Mermaid → .diagra (infers icons from labels)
+diagra convert diagram.mmd
+diagra convert diagram.mmd --icons aws --theme dark --animate flow
+
 # Render to SVG (default)
 diagra render diagram.diagra
 

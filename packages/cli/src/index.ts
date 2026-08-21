@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import { convertCommand } from "./commands/convert";
 import { iconsCommand } from "./commands/icons";
 import { initCommand } from "./commands/init";
 import { renderCommand } from "./commands/render";
@@ -10,6 +11,7 @@ const program = new Command();
 
 program.name("diagra").description("Mermaid, but beautiful.").version("0.1.0");
 program.addCommand(renderCommand());
+program.addCommand(convertCommand());
 program.addCommand(watchCommand());
 program.addCommand(initCommand());
 program.addCommand(iconsCommand());

@@ -25,7 +25,34 @@ Generic icons ship with Diagra (Lucide-based, MIT). Official cloud provider icon
 
 ---
 
-## Install cloud icon packs
+## Convert Mermaid to Diagra
+
+Already have a `.mmd` flowchart? Convert it in one step:
+
+```bash
+diagra convert examples/aws/02-event-driven.mmd
+diagra render examples/aws/02-event-driven.diagra
+```
+
+Diagra guesses icon classes from node labels using keyword rules (no AI):
+
+| Label contains | Inferred class (`--icons generic`) | With `--icons aws` |
+|---|---|---|
+| Lambda, Worker, Service | `:::generic-server` | `:::aws-lambda` if "lambda" in label |
+| EventBridge, SNS, Topic | `:::generic-event` | `:::aws-eventbridge`, `:::aws-sns` |
+| Queue, SQS, DLQ | `:::generic-queue` | `:::aws-sqs` |
+| DynamoDB, Database | `:::generic-database` | `:::aws-dynamodb` |
+| CloudWatch, Monitor | `:::generic-monitoring` | `:::aws-cloudwatch` |
+
+Icons are a starting point — edit the `.diagra` file to swap `:::generic-*` for `:::aws-*` after reviewing.
+
+```bash
+diagra convert diagram.mmd --icons generic   # safe default, works offline
+diagra convert diagram.mmd --icons aws     # needs: diagra icons install aws
+diagra convert diagram.mmd --no-infer-icons  # directives only, no ::: classes
+```
+
+---
 
 ```bash
 # Interactive — confirms before downloading
